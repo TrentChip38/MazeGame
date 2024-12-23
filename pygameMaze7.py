@@ -48,7 +48,7 @@ enemy_size = 20
 start_positions = [[390, 290], [50, 50], [50, 50], [50, 50], [50, 50], [50, 50]]
 
 # Levels and Walls
-levels_color = [GREEN, GREY, GREY,GREY,GREY,GREY,GREY,]
+levels_color = [GREEN, (120, 100, 140), GREY,GREY,GREY,GREY,GREY,]
 
 # level_goals = {
 #     f"Goal {i+1}":{
@@ -173,7 +173,7 @@ def draw_game():
     # Draw goal
     if current_level == 0:
         for goal in levelZeroGoals.values():
-            goal_rect = pygame.Rect(goal["pos"][0], goal["pos"][1], goal_size, goal_size)
+            goal_rect = pygame.Rect(goal["pos"][0], goal["pos"][1], goal["size"], goal["size"])
             pygame.draw.rect(screen, goal["color"], goal_rect)
     else:
         goal_pos = [WIDTH - 50, HEIGHT - 50]
