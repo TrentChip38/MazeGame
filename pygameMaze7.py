@@ -13,6 +13,7 @@ pygame.display.set_caption("Maze Runner")
 # Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
+WALL_BLACK = (50, 50, 10)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
@@ -24,7 +25,7 @@ player_size = 20
 player_speed = 5
 
 # Visibility settings
-visibility_radius = 100
+visibility_radius = 200
 
 # Goal settings
 goal_size = 30
@@ -84,7 +85,7 @@ score = 0
 clock = pygame.time.Clock()
 
 # Player starting positions
-start_positions = [[50, 50], [50, 50], [50, 50]]
+start_positions = [[50, 50], [50, 50], [50, 50], [50, 50], [50, 50], [50, 50]]
 
 # Reset level
 current_level = 0
@@ -137,7 +138,7 @@ def draw_game():
 
     # Draw walls (walls are always black)
     for wall in levels[current_level]:
-        pygame.draw.rect(screen, BLACK, wall)
+        pygame.draw.rect(screen, WALL_BLACK, wall)
 
     # Draw goal
     goal_pos = [WIDTH - 50, HEIGHT - 50]
