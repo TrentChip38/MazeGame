@@ -1,6 +1,7 @@
 import pygame
 import sys
 import random
+import math
 
 # Initialize Pygame
 pygame.init()
@@ -25,7 +26,13 @@ player_size = 20
 player_speed = 5
 
 # Visibility settings
-visibility_radius = 200
+vis_radius = 2
+vis_y_left = vis_radius - 1
+vis_y_right = vis_radius + 1
+vis_x_left = vis_y_left
+vis_x_right = vis_y_right
+print(vis_x_left)
+print(vis_x_right)
 
 # Goal settings
 goal_size = 30
@@ -38,7 +45,12 @@ coin_count = 5
 enemy_size = 20
 
 # Levels and Walls
+levels_color = [GREEN, GREY, GREY,GREY,GREY,GREY,GREY,]
 levels = [
+    [
+        # Level 0
+        (0, 0, 380, 20), (380, 0, 380, 20), 
+    ],
     [
         # Level 1
         (0, 100, 200, 20), (200, 100, 20, 150), (0, 250, 220, 20), (180, 300, 20, 100),
@@ -134,7 +146,8 @@ def reset_level():
 # Function to draw everything
 def draw_game():
     # Clear screen with gray background
-    screen.fill(GREY)
+    color = levels_color[current_level]
+    screen.fill(color)
 
     # Draw walls (walls are always black)
     for wall in levels[current_level]:
@@ -154,10 +167,14 @@ def draw_game():
         pygame.draw.rect(screen, RED, (enemy[0], enemy[1], enemy_size, enemy_size))
     
     # Draw unexplored areas in black
-    for row in range(HEIGHT // 40):
-        for col in range(WIDTH // 40):
-            if explored[row][col] == False:
-                pygame.draw.rect(screen, BLACK, (col * 40, row * 40, 40, 40))
+    if current_level == 0:
+        #don't draw
+        pass
+    else:
+        for row in range(HEIGHT // 40):
+            for col in range(WIDTH // 40):
+                if explored[row][col] == False:
+                    pygame.draw.rect(screen, BLACK, (col * 40, row * 40, 40, 40))
 
     # Draw player
     player_rect = pygame.Rect(player_pos[0], player_pos[1], player_size, player_size)
@@ -174,8 +191,8 @@ def update_explored():
     """Mark the area around the player as explored."""
     player_row = player_pos[1] // 40
     player_col = player_pos[0] // 40
-    for dy in range(-1, 2):  # 3x3 grid around the player
-        for dx in range(-1, 2):
+    for dy in range(-vis_y_left, vis_y_right):  # 3x3 grid around the player
+        for dx in range(-vis_y_left, vis_x_right):
             row = player_row + dy
             col = player_col + dx
             if 0 <= row < HEIGHT // 40 and 0 <= col < WIDTH // 40:
