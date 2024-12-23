@@ -296,18 +296,50 @@ while running:
 
     # Move enemies
     for enemy in enemies:
-        #Move in direction
-        if enemy[4] == 0:#Up
-            enemy[1] -= enemy_speed
-        elif enemy[4] == 1:#Right
-            enemy[0] += enemy_speed
-        elif enemy[4] == 2:#Down
-            enemy[1] += enemy_speed
-        elif enemy[4] == 3:#Left
-            enemy[0] -= enemy_speed
-        #enemy[0] += enemy[2]
-        #enemy[1] += enemy[3]
         enemy_rect = pygame.Rect(enemy[0], enemy[1], enemy_size, enemy_size)
+
+        # Check wall collision and proximity
+        wall_rects = [pygame.Rect(wall) for wall in levels[current_level]]
+        step_back = 0#Thought this would be needed, but it breaks it
+        proximity_margin = 5  # Adjust margin for better detection
+        wall_proximity = False
+
+        while True:
+            # Create an expanded rectangle for proximity check based on direction
+            if enemy[4] == 0:  # Up
+                proximity_rect = enemy_rect.inflate(0, proximity_margin * 2)
+                proximity_rect.top -= proximity_margin
+            elif enemy[4] == 1:  # Right
+                proximity_rect = enemy_rect.inflate(proximity_margin * 2, 0)
+                proximity_rect.left += proximity_margin
+            elif enemy[4] == 2:  # Down
+                proximity_rect = enemy_rect.inflate(0, proximity_margin * 2)
+                proximity_rect.bottom += proximity_margin
+            elif enemy[4] == 3:  # Left
+                proximity_rect = enemy_rect.inflate(proximity_margin * 2, 0)
+                proximity_rect.right -= proximity_margin
+
+            # Check if any walls are within the proximity area
+            wall_proximity = any(proximity_rect.colliderect(wall_rect) for wall_rect in wall_rects)
+
+            if not wall_proximity:
+                break  # If no walls in the way, exit the loop
+
+            # Handle wall collision based on direction and adjust path
+            if enemy[4] == 0:  # Was going up
+                enemy[1] += step_back  # Step back from wall
+                enemy[4] = random.choice([3, 1])  # Choose a new direction (left or right)
+            elif enemy[4] == 1:  # Was going right
+                enemy[0] -= step_back  # Step back from wall
+                enemy[4] = random.choice([2, 0])  # Choose a new direction (down or up)
+            elif enemy[4] == 2:  # Was going down
+                enemy[1] -= step_back  # Step back from wall
+                enemy[4] = random.choice([3, 1])  # Choose a new direction (left or right)
+            elif enemy[4] == 3:  # Was going left
+                enemy[0] += step_back  # Step back from wall
+                enemy[4] = random.choice([2, 0])  # Choose a new direction (down or up)
+
+        # Screen edge collision
         if enemy[0] <= 0:
             enemy[4] = 1
         if enemy[0] >= WIDTH - enemy_size:
@@ -316,19 +348,21 @@ while running:
             enemy[4] = 2
         if enemy[1] >= HEIGHT - enemy_size:
             enemy[4] = 0
+
+        # Move in the current direction
+        if enemy[4] == 0:  # Up
+            enemy[1] -= enemy_speed
+        elif enemy[4] == 1:  # Right
+            enemy[0] += enemy_speed
+        elif enemy[4] == 2:  # Down
+            enemy[1] += enemy_speed
+        elif enemy[4] == 3:  # Left
+            enemy[0] -= enemy_speed
+
+        # Player collision
         if new_rect.colliderect(enemy_rect):
             print("Game Over! Enemy collision.")
             running = False
-        # wall_rects = [pygame.Rect(wall) for wall in levels[current_level]]
-        # if any(new_rect.colliderect(wall_rect) for wall_rect in wall_rects):
-        #     if enemy[4] == 0:
-        #         enemy[1] += enemy_speed
-        #     elif enemy[4] == 1:
-        #         enemy[0] += enemy_speed
-        #     elif enemy[4] == 2:
-        #         enemy[1] -= enemy_speed
-        #     elif enemy[4] == 3:
-        #         enemy[0] -= enemy_speed
 
     # Draw game
     draw_game()
