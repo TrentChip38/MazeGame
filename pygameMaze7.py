@@ -25,6 +25,8 @@ GREY = (100, 100, 100)
 player_size = 20
 player_speed = 5
 
+enemy_speed = 8
+
 # Visibility settings
 vis_radius = 2
 vis_y_left = vis_radius - 1
@@ -45,10 +47,10 @@ coin_count = 5
 enemy_size = 20
 
 # Player starting positions
-start_positions = [[390, 290], [50, 50], [50, 50], [50, 50], [50, 50], [50, 50]]
+start_positions = [[390, 290], [390, 580], [50, 50], [50, 50], [50, 50], [50, 50]]
 
 # Levels and Walls
-levels_color = [GREEN, (120, 100, 140), GREY,GREY,GREY,GREY,GREY,]
+levels_color = [GREEN, (140, 100, 100), GREY,GREY,GREY,GREY,GREY,]
 
 # level_goals = {
 #     f"Goal {i+1}":{
@@ -147,10 +149,14 @@ def reset_level():
     for _ in range(current_level + 2):
         while True:
             enemy = [
-                random.randint(50, WIDTH - 50),
-                random.randint(50, HEIGHT - 50),
+                #Position
+                random.randint(100, WIDTH - 100),
+                random.randint(100, HEIGHT - 100),
+                #Velocity vecctors for diagnol
                 random.choice([-2, 2]),
                 random.choice([-2, 2]),
+                #Direction vectors for hor/vert
+                random.randint(0, 3),
             ]
             enemy_rect = pygame.Rect(enemy[0], enemy[1], enemy_size, enemy_size)
             wall_rects = [pygame.Rect(wall) for wall in levels[current_level]]
@@ -204,9 +210,9 @@ def draw_game():
 
     # Draw timer and score
     font = pygame.font.SysFont(None, 36)
-    timer_text = font.render(f"Time: {int(timer)}", True, BLACK)
+    #timer_text = font.render(f"Time: {int(timer)}", True, BLACK)
     score_text = font.render(f"Score: {score}", True, BLACK)
-    screen.blit(timer_text, (10, 10))
+    #screen.blit(timer_text, (10, 10))
     screen.blit(score_text, (10, 50))
 
 def update_explored():
@@ -232,10 +238,10 @@ while running:
             running = False
 
     # Timer
-    timer -= clock.get_time() / 1000
-    if timer <= 0:
-        print("Time's up! Game Over!")
-        running = False
+    # timer -= clock.get_time() / 1000
+    # if timer <= 0:
+    #     print("Time's up! Game Over!")
+    #     running = False
 
     # Player movement
     keys = pygame.key.get_pressed()
@@ -290,16 +296,39 @@ while running:
 
     # Move enemies
     for enemy in enemies:
-        enemy[0] += enemy[2]
-        enemy[1] += enemy[3]
+        #Move in direction
+        if enemy[4] == 0:#Up
+            enemy[1] -= enemy_speed
+        elif enemy[4] == 1:#Right
+            enemy[0] += enemy_speed
+        elif enemy[4] == 2:#Down
+            enemy[1] += enemy_speed
+        elif enemy[4] == 3:#Left
+            enemy[0] -= enemy_speed
+        #enemy[0] += enemy[2]
+        #enemy[1] += enemy[3]
         enemy_rect = pygame.Rect(enemy[0], enemy[1], enemy_size, enemy_size)
-        if enemy[0] <= 0 or enemy[0] >= WIDTH - enemy_size:
-            enemy[2] *= -1
-        if enemy[1] <= 0 or enemy[1] >= HEIGHT - enemy_size:
-            enemy[3] *= -1
+        if enemy[0] <= 0:
+            enemy[4] = 1
+        if enemy[0] >= WIDTH - enemy_size:
+            enemy[4] = 3
+        if enemy[1] <= 0:
+            enemy[4] = 2
+        if enemy[1] >= HEIGHT - enemy_size:
+            enemy[4] = 0
         if new_rect.colliderect(enemy_rect):
             print("Game Over! Enemy collision.")
             running = False
+        # wall_rects = [pygame.Rect(wall) for wall in levels[current_level]]
+        # if any(new_rect.colliderect(wall_rect) for wall_rect in wall_rects):
+        #     if enemy[4] == 0:
+        #         enemy[1] += enemy_speed
+        #     elif enemy[4] == 1:
+        #         enemy[0] += enemy_speed
+        #     elif enemy[4] == 2:
+        #         enemy[1] -= enemy_speed
+        #     elif enemy[4] == 3:
+        #         enemy[0] -= enemy_speed
 
     # Draw game
     draw_game()
