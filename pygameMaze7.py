@@ -44,12 +44,31 @@ coin_count = 5
 # Enemy settings
 enemy_size = 20
 
+# Player starting positions
+start_positions = [[50, 50], [50, 50], [50, 50], [50, 50], [50, 50], [50, 50]]
+
 # Levels and Walls
 levels_color = [GREEN, GREY, GREY,GREY,GREY,GREY,GREY,]
+
+# level_goals = {
+#     f"Goal {i+1}":{
+#         "pos": [WIDTH //2, 0],
+#         "sendto": 0,
+#         "sendtopos": [WIDTH //2, HEIGHT]
+#     }
+# }
+
+levelZeroGoals = {
+    "goal1": {"pos": [WIDTH //2, 0], "sendtolevel": 1, "sendtopos": [WIDTH //2, HEIGHT]},
+    "goal2": {"pos": [WIDTH, HEIGHT//2], "sendtolevel": 2, "sendtopos": [50, 50]},
+    "goal3": {"pos": [WIDTH //2, HEIGHT], "sendtolevel": 3, "sendtopos": [50, 50]},
+    "goal4": {"pos": [0, HEIGHT//2], "sendtolevel": 4, "sendtopos": [50, 50]},
+}
+
 levels = [
     [
         # Level 0
-        (0, 0, 380, 20), (380, 0, 380, 20), 
+        (0, 0, 380, 20), (420, 0, 380, 20), 
     ],
     [
         # Level 1
@@ -95,9 +114,6 @@ score = 0
 
 # Clock for controlling frame rate
 clock = pygame.time.Clock()
-
-# Player starting positions
-start_positions = [[50, 50], [50, 50], [50, 50], [50, 50], [50, 50], [50, 50]]
 
 # Reset level
 current_level = 0
@@ -154,9 +170,14 @@ def draw_game():
         pygame.draw.rect(screen, WALL_BLACK, wall)
 
     # Draw goal
-    goal_pos = [WIDTH - 50, HEIGHT - 50]
-    goal_rect = pygame.Rect(goal_pos[0], goal_pos[1], goal_size, goal_size)
-    pygame.draw.rect(screen, GREEN, goal_rect)
+    if current_level == 0:
+        for goal in levelZeroGoals.values():
+            goal_rect = pygame.Rect(goal["pos"][0], goal["pos"][1], goal_size, goal_size)
+            pygame.draw.rect(screen, GREEN, goal_rect)
+    else:
+        goal_pos = [WIDTH - 50, HEIGHT - 50]
+        goal_rect = pygame.Rect(goal_pos[0], goal_pos[1], goal_size, goal_size)
+        pygame.draw.rect(screen, GREEN, goal_rect)
 
     # Draw coins
     for coin in coins:
@@ -236,6 +257,17 @@ while running:
 
     # Update explored areas
     update_explored()
+
+    # Check for reaching the gates on level 1
+    if current_level == 0:
+        for goal_name, goal in levelZeroGoals.items():
+            #print(f"{goal_name}: {goal}")
+            goal_rect = pygame.Rect(goal["pos"][0], goal["pos"][1], goal_size, goal_size)
+            pygame.draw.rect(screen, GREEN, goal_rect)
+            if new_rect.colliderect(goal_rect):
+                score += 100
+                current_level = goal["sendtolevel"]
+                reset_level()
 
     # Check for reaching the goal
     goal_rect = pygame.Rect(WIDTH - 50, HEIGHT - 50, goal_size, goal_size)
