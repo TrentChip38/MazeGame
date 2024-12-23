@@ -31,8 +31,8 @@ vis_y_left = vis_radius - 1
 vis_y_right = vis_radius + 1
 vis_x_left = vis_y_left
 vis_x_right = vis_y_right
-print(vis_x_left)
-print(vis_x_right)
+#print(vis_x_left)
+#print(vis_x_right)
 
 # Goal settings
 goal_size = 30
@@ -45,7 +45,7 @@ coin_count = 5
 enemy_size = 20
 
 # Player starting positions
-start_positions = [[50, 50], [50, 50], [50, 50], [50, 50], [50, 50], [50, 50]]
+start_positions = [[390, 290], [50, 50], [50, 50], [50, 50], [50, 50], [50, 50]]
 
 # Levels and Walls
 levels_color = [GREEN, GREY, GREY,GREY,GREY,GREY,GREY,]
@@ -59,16 +59,17 @@ levels_color = [GREEN, GREY, GREY,GREY,GREY,GREY,GREY,]
 # }
 
 levelZeroGoals = {
-    "goal1": {"pos": [WIDTH //2, 0], "sendtolevel": 1, "sendtopos": [WIDTH //2, HEIGHT]},
-    "goal2": {"pos": [WIDTH, HEIGHT//2], "sendtolevel": 2, "sendtopos": [50, 50]},
-    "goal3": {"pos": [WIDTH //2, HEIGHT], "sendtolevel": 3, "sendtopos": [50, 50]},
-    "goal4": {"pos": [0, HEIGHT//2], "sendtolevel": 4, "sendtopos": [50, 50]},
+    "goalN": {"pos": [WIDTH //2, 0], "sendtolevel": 1, "sendtopos": [WIDTH //2, HEIGHT], "color": GREEN, "size": 20},
+    "goalE": {"pos": [WIDTH, HEIGHT//2], "sendtolevel": 2, "sendtopos": [50, 50], "color": GREEN, "size": 20},
+    "goalS": {"pos": [WIDTH //2, HEIGHT], "sendtolevel": 3, "sendtopos": [50, 50], "color": GREEN, "size": 20},
+    "goalW": {"pos": [0, HEIGHT//2], "sendtolevel": 4, "sendtopos": [50, 50], "color": GREEN, "size": 20},
 }
 
 levels = [
     [
         # Level 0
-        (0, 0, 380, 20), (420, 0, 380, 20), 
+        (0, 0, 380, 20), (420, 0, 380, 20), (780, 0, 20, 280), (780, 320, 20, 280),
+        (0, 580, 380, 20), (420, 580, 380, 20), (0, 0, 20, 280), (0, 320, 20, 280),
     ],
     [
         # Level 1
@@ -173,7 +174,7 @@ def draw_game():
     if current_level == 0:
         for goal in levelZeroGoals.values():
             goal_rect = pygame.Rect(goal["pos"][0], goal["pos"][1], goal_size, goal_size)
-            pygame.draw.rect(screen, GREEN, goal_rect)
+            pygame.draw.rect(screen, goal["color"], goal_rect)
     else:
         goal_pos = [WIDTH - 50, HEIGHT - 50]
         goal_rect = pygame.Rect(goal_pos[0], goal_pos[1], goal_size, goal_size)
@@ -262,8 +263,8 @@ while running:
     if current_level == 0:
         for goal_name, goal in levelZeroGoals.items():
             #print(f"{goal_name}: {goal}")
-            goal_rect = pygame.Rect(goal["pos"][0], goal["pos"][1], goal_size, goal_size)
-            pygame.draw.rect(screen, GREEN, goal_rect)
+            goal_rect = pygame.Rect(goal["pos"][0], goal["pos"][1], goal["size"], goal["size"])
+            #pygame.draw.rect(screen, goal["color"], goal_rect)
             if new_rect.colliderect(goal_rect):
                 score += 100
                 current_level = goal["sendtolevel"]
