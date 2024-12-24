@@ -248,12 +248,20 @@ while running:
     dx, dy = 0, 0
     if keys[pygame.K_LEFT]:
         dx -= player_speed
+    elif keys[pygame.K_a]:
+        dx -= player_speed
     if keys[pygame.K_RIGHT]:
+        dx += player_speed
+    elif keys[pygame.K_d]:
         dx += player_speed
     if keys[pygame.K_UP]:
         dy -= player_speed
+    elif keys[pygame.K_w]:
+        dy -= player_speed
     if keys[pygame.K_DOWN]:
-        dy += player_speed
+          dy += player_speed
+    elif keys[pygame.K_s]:
+            dy += player_speed
 
     # Move player with collision detection
     new_pos = [player_pos[0] + dx, player_pos[1] + dy]
