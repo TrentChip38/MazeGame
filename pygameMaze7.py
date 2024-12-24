@@ -17,7 +17,9 @@ pygame.display.set_caption("Maze Runner")
 player_size = 20
 player_speed = 5
 
+#Enemy settings
 enemy_speed = 8
+default_enemy_amount = 4
 
 # Visibility settings
 vis_radius = 2
@@ -38,29 +40,18 @@ coin_count = 5
 # Enemy settings
 enemy_size = 20
 
-
-# level_goals = {
-#     f"Goal {i+1}":{
-#         "pos": [WIDTH //2, 0],
-#         "sendto": 0,
-#         "sendtopos": [WIDTH //2, HEIGHT]
-#     }
-# }
-
-
-
 # Timer and Score
-timer = 60  # 60 seconds per level
+timer = 60  # 60 seconds per level (unused)
 score = 0
 
 # Clock for controlling frame rate
 clock = pygame.time.Clock()
 
-# Reset level
+# Beginning level
 current_level = 0
 coins = []
 enemies = []
-global start_position 
+global start_position
 start_position = [390, 290]
 
 # Tracking explored positions (2D array)
@@ -89,16 +80,16 @@ def reset_level():
                 break
 
     # Generate enemies
-    for _ in range(current_level + 2):
+    for _ in range(default_enemy_amount):#current_level + 2
         while True:
             enemy = [
                 #Position
                 random.randint(100, WIDTH - 100),
                 random.randint(100, HEIGHT - 100),
-                #Velocity vecctors for diagnol
+                #Velocity vecctors for diagnol (now unused)
                 random.choice([-2, 2]),
                 random.choice([-2, 2]),
-                #Direction vectors for hor/vert
+                #Direction vectors for up, right, down, left
                 random.randint(0, 3),
             ]
             enemy_rect = pygame.Rect(enemy[0], enemy[1], enemy_size, enemy_size)
@@ -166,7 +157,7 @@ def update_explored():
 # Initialize the first level
 reset_level()
 
-# Main game loop
+# Main game loop------------------------------
 running = True
 while running:
     # Event handling
@@ -211,7 +202,7 @@ while running:
     update_explored()
 
 
-
+    #Check for hitting goals
     for goal_name, goal in Level.level_goals[current_level].items():
         goal_rect = pygame.Rect(goal["pos"][0], goal["pos"][1], goal["size"], goal["size"])
 
@@ -222,16 +213,16 @@ while running:
             start_position = goal["sendtopos"]
             reset_level()
 
-    # Check for reaching the goal
-    goal_rect = pygame.Rect(WIDTH - 50, HEIGHT - 50, goal_size, goal_size)
-    if new_rect.colliderect(goal_rect):
-        score += 100
-        current_level += 1
-        if current_level >= len(Level.levels):
-            print("You win!")
-            running = False
-        else:
-            reset_level()
+    # Check for reaching the goal in the bottom right (OLD)
+    # goal_rect = pygame.Rect(WIDTH - 50, HEIGHT - 50, goal_size, goal_size)
+    # if new_rect.colliderect(goal_rect):
+    #     score += 100
+    #     current_level += 1
+    #     if current_level >= len(Level.levels):
+    #         print("You win!")
+    #         running = False
+    #     else:
+    #         reset_level()
 
     # Check for coin collection
     for coin in coins[:]:

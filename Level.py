@@ -6,7 +6,7 @@ start_positions = {0:[390, 290], 1:[390, 560], 2:[20, 280]}
 
 # Levels and Walls
 import Colors as C
-levels_color = {0: C.GREEN, 1:(140, 100, 100), 2:C.GREY, 3: C.GREY, 4: C.GREY, 42: C.GREY, 44: C.GREY,}
+levels_color = {0: C.GREEN, 1:(140, 100, 100), 2:C.GREY, 3: C.GREY, 4: C.GREY, 42: C.GREY, 44: C.GREY, 14: C.GREY}
 
 level_goals = {
     0: {
@@ -19,13 +19,17 @@ level_goals = {
         "goalN": {"pos": [WIDTH //2, 0], "sendtolevel": 11, "sendtopos": [WIDTH //2, HEIGHT], "color": C.GREEN, "size": 20},
         "goalE": {"pos": [WIDTH, HEIGHT//2], "sendtolevel": 12, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
         "goalS": {"pos": [WIDTH //2, HEIGHT], "sendtolevel": 13, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
-        "goalW": {"pos": [0, HEIGHT//2], "sendtolevel": 14, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
+        "goalW": {"pos": [0, HEIGHT//2], "sendtolevel": 14, "sendtopos": [WIDTH - 40, HEIGHT//2 - 10], "color": C.GREEN, "size": 20},
     },
     2: {
         "goalN": {"pos": [WIDTH //2, 0], "sendtolevel": 21, "sendtopos": [WIDTH //2, HEIGHT], "color": C.GREEN, "size": 20},
         "goalE": {"pos": [WIDTH, HEIGHT//2], "sendtolevel": 22, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
         "goalS": {"pos": [WIDTH //2, HEIGHT], "sendtolevel": 23, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
         "goalW": {"pos": [0, HEIGHT//2], "sendtolevel": 24, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
+    },
+    14: {
+        "goalS": {"pos": [WIDTH //2, HEIGHT], "sendtolevel": 1, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
+        "goalW": {"pos": [0, HEIGHT//2], "sendtolevel": 0, "sendtopos": [380, 280], "color": C.GREEN, "size": 20},
     },
 }
 
@@ -103,7 +107,7 @@ levels = {
         (640, 40, 20, 520),        # 8th vertical
         (720, 40, 20, 520),        # Right vertical
     },
-    6:{
+    14:{
             # tighter grid
         (0, 0, 800, 10),           # Top wall
         (0, 590, 800, 10),         # Bottom wall
@@ -111,29 +115,29 @@ levels = {
         (790, 0, 10, 600),         # Right wall
 
         # Horizontal walls
-        (20, 60, 760, 10),         # Top horizontal
-        (20, 120, 760, 10),        # 2nd horizontal
-        (20, 180, 760, 10),        # 3rd horizontal
-        (20, 240, 760, 10),        # 4th horizontal
-        (20, 300, 760, 10),        # 5th horizontal
-        (20, 360, 760, 10),        # 6th horizontal
-        (20, 420, 760, 10),        # 7th horizontal
-        (20, 480, 760, 10),        # 8th horizontal
-        (20, 540, 760, 10),        # Bottom horizontal
+        (20, 60, 100, 20),         # Top horizontal
+        (20, 120, 200, 20),        # 2nd horizontal
+        (20, 180, 300, 20),        # 3rd horizontal
+        (200, 240, 300, 20),        # 4th horizontal
+        (400, 300, 200, 20),        # 5th horizontal
+        (200, 360, 400, 20),        # 6th horizontal
+        (100, 420, 100, 20),        # 7th horizontal
+        (0, 480, 300, 20),        # 8th horizontal
+        (0, 540, 500, 20),        # Bottom horizontal
 
         # Vertical walls
-        (60, 20, 10, 560),         # 1st vertical
-        (120, 20, 10, 560),        # 2nd vertical
-        (180, 20, 10, 560),        # 3rd vertical
-        (240, 20, 10, 560),        # 4th vertical
-        (300, 20, 10, 560),        # 5th vertical
-        (360, 20, 10, 560),        # 6th vertical
-        (420, 20, 10, 560),        # Center vertical
-        (480, 20, 10, 560),        # 8th vertical
-        (540, 20, 10, 560),        # 9th vertical
-        (600, 20, 10, 560),        # 10th vertical
-        (660, 20, 10, 560),        # 11th vertical
-        (720, 20, 10, 560),        # 12th vertical
-        (780, 20, 10, 560),        # Right vertical
+        (60, 40, 20, 200),         # 1st vertical
+        (120, 0, 20, 200),        # 2nd vertical
+        (180, 80, 20, 200),        # 3rd vertical
+        (240, 00, 20, 200),        # 4th vertical
+        (300, 40, 20, 200),        # 5th vertical
+        (360, 80, 20, 200),        # 6th vertical
+        (420, 0, 20, 200),        # Center vertical
+        (480, 80, 20, 200),        # 8th vertical
+        (540, 40, 20, 200),        # 9th vertical
+        (600, 20, 20, 200),        # 10th vertical
+        (660, 40, 20, 200),        # 11th vertical
+        (720, 80, 20, 200),        # 12th vertical
+        (780, 20, 20, 200),        # Right vertical
     }
 }
