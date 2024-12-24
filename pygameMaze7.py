@@ -57,16 +57,21 @@ score = 0
 clock = pygame.time.Clock()
 
 # Reset level
-current_level = "0"
+current_level = 0
 coins = []
 enemies = []
+global start_position 
+start_position = [390, 290]
 
 # Tracking explored positions (2D array)
 explored = [[False for _ in range(WIDTH // 40)] for _ in range(HEIGHT // 40)]
 
 def reset_level():
     global player_pos, coins, enemies, timer, explored
-    player_pos = Level.start_positions[current_level]
+    player_pos = start_position
+    #Level.start_positions[current_level]
+    #print(Level.start_positions[current_level])
+    #print(start_position)
     coins.clear()
     enemies.clear()
 
@@ -101,7 +106,6 @@ def reset_level():
             if not any(enemy_rect.colliderect(wall_rect) for wall_rect in wall_rects):
                 enemies.append(enemy)
                 break
-
     timer = 60  # Reset timer
 
 # Function to draw everything
@@ -215,6 +219,7 @@ while running:
             print(f"Player reached {goal_name}! Moving to level {goal['sendtolevel']}.")
             score += 100
             current_level = goal["sendtolevel"]
+            start_position = goal["sendtopos"]
             reset_level()
 
     # Check for reaching the goal
