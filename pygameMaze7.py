@@ -36,6 +36,7 @@ vis_x_right = vis_y_right
 #print(vis_x_left)
 #print(vis_x_right)
 
+import Level
 # Goal settings
 goal_size = 30
 
