@@ -1,25 +1,17 @@
 import pygame
 import sys
 import random
+import math
+import Colors as C
 import Level
 
 # Initialize Pygame
 pygame.init()
 
-# Screen dimensions
-WIDTH, HEIGHT = 800, 600
+WIDTH = Level.WIDTH
+HEIGHT = Level.HEIGHT
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Maze Runner")
-
-# Colors
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-WALL_BLACK = (50, 50, 10)
-GREEN = (0, 255, 0)
-RED = (255, 0, 0)
-BLUE = (0, 0, 255)
-YELLOW = (255, 255, 0)
-GREY = (100, 100, 100)
 
 # Player settings
 player_size = 20
@@ -36,7 +28,6 @@ vis_x_right = vis_y_right
 #print(vis_x_left)
 #print(vis_x_right)
 
-import Level
 # Goal settings
 goal_size = 30
 
@@ -66,7 +57,7 @@ score = 0
 clock = pygame.time.Clock()
 
 # Reset level
-current_level = 0
+current_level = "0"
 coins = []
 enemies = []
 
@@ -75,7 +66,7 @@ explored = [[False for _ in range(WIDTH // 40)] for _ in range(HEIGHT // 40)]
 
 def reset_level():
     global player_pos, coins, enemies, timer, explored
-    player_pos = start_positions[current_level]
+    player_pos = Level.start_positions[current_level]
     coins.clear()
     enemies.clear()
 
@@ -87,7 +78,7 @@ def reset_level():
         while True:
             coin = [random.randint(50, WIDTH - 50), random.randint(50, HEIGHT - 50)]
             coin_rect = pygame.Rect(coin[0], coin[1], coin_size, coin_size)
-            wall_rects = [pygame.Rect(wall) for wall in levels[current_level]]
+            wall_rects = [pygame.Rect(wall) for wall in Level.levels[current_level]]
             if not any(coin_rect.colliderect(wall_rect) for wall_rect in wall_rects):
                 coins.append(coin)
                 break
@@ -106,7 +97,7 @@ def reset_level():
                 random.randint(0, 3),
             ]
             enemy_rect = pygame.Rect(enemy[0], enemy[1], enemy_size, enemy_size)
-            wall_rects = [pygame.Rect(wall) for wall in levels[current_level]]
+            wall_rects = [pygame.Rect(wall) for wall in Level.levels[current_level]]
             if not any(enemy_rect.colliderect(wall_rect) for wall_rect in wall_rects):
                 enemies.append(enemy)
                 break
@@ -116,12 +107,12 @@ def reset_level():
 # Function to draw everything
 def draw_game():
     # Clear screen with gray background
-    color = levels_color[current_level]
+    color = Level.levels_color[current_level]
     screen.fill(color)
 
     # Draw walls (walls are always black)
-    for wall in levels[current_level]:
-        pygame.draw.rect(screen, WALL_BLACK, wall)
+    for wall in Level.levels[current_level]:
+        pygame.draw.rect(screen, C.WALL_BLACK, wall)
 
     # Draw goal
         for goal_name, goal in Level.level_goals[current_level].items():
@@ -130,11 +121,11 @@ def draw_game():
 
     # Draw coins
     for coin in coins:
-        pygame.draw.circle(screen, YELLOW, (coin[0], coin[1]), coin_size // 2)
+        pygame.draw.circle(screen, C.YELLOW, (coin[0], coin[1]), coin_size // 2)
 
     # Draw enemies
     for enemy in enemies:
-        pygame.draw.rect(screen, RED, (enemy[0], enemy[1], enemy_size, enemy_size))
+        pygame.draw.rect(screen, C.RED, (enemy[0], enemy[1], enemy_size, enemy_size))
     
     # Draw unexplored areas in black
     if current_level == 0:
@@ -144,16 +135,16 @@ def draw_game():
         for row in range(HEIGHT // 40):
             for col in range(WIDTH // 40):
                 if explored[row][col] == False:
-                    pygame.draw.rect(screen, BLACK, (col * 40, row * 40, 40, 40))
+                    pygame.draw.rect(screen, C.BLACK, (col * 40, row * 40, 40, 40))
 
     # Draw player
     player_rect = pygame.Rect(player_pos[0], player_pos[1], player_size, player_size)
-    pygame.draw.rect(screen, BLUE, player_rect)
+    pygame.draw.rect(screen, C.BLUE, player_rect)
 
     # Draw timer and score
     font = pygame.font.SysFont(None, 36)
     #timer_text = font.render(f"Time: {int(timer)}", True, BLACK)
-    score_text = font.render(f"Score: {score}", True, BLACK)
+    score_text = font.render(f"Score: {score}", True, C.BLACK)
     #screen.blit(timer_text, (10, 10))
     screen.blit(score_text, (10, 50))
 
@@ -208,7 +199,7 @@ while running:
     # Move player with collision detection
     new_pos = [player_pos[0] + dx, player_pos[1] + dy]
     new_rect = pygame.Rect(new_pos[0], new_pos[1], player_size, player_size)
-    wall_rects = [pygame.Rect(wall) for wall in levels[current_level]]
+    wall_rects = [pygame.Rect(wall) for wall in Level.levels[current_level]]
     if not any(new_rect.colliderect(wall_rect) for wall_rect in wall_rects):
         player_pos = new_pos
 
@@ -231,7 +222,7 @@ while running:
     if new_rect.colliderect(goal_rect):
         score += 100
         current_level += 1
-        if current_level >= len(levels):
+        if current_level >= len(Level.levels):
             print("You win!")
             running = False
         else:
@@ -249,7 +240,7 @@ while running:
         enemy_rect = pygame.Rect(enemy[0], enemy[1], enemy_size, enemy_size)
 
         # Check wall collision and proximity
-        wall_rects = [pygame.Rect(wall) for wall in levels[current_level]]
+        wall_rects = [pygame.Rect(wall) for wall in Level.levels[current_level]]
         step_back = 0#Thought this would be needed, but it breaks it
         proximity_margin = 5  # Adjust margin for better detection
         wall_proximity = False
