@@ -1,7 +1,7 @@
 import pygame
 import sys
 import random
-import math
+import Level
 
 # Initialize Pygame
 pygame.init()
@@ -124,14 +124,9 @@ def draw_game():
         pygame.draw.rect(screen, WALL_BLACK, wall)
 
     # Draw goal
-    if current_level == 0:
-        for goal in levelZeroGoals.values():
+        for goal_name, goal in Level.level_goals[current_level].items():
             goal_rect = pygame.Rect(goal["pos"][0], goal["pos"][1], goal["size"], goal["size"])
             pygame.draw.rect(screen, goal["color"], goal_rect)
-    else:
-        goal_pos = [WIDTH - 50, HEIGHT - 50]
-        goal_rect = pygame.Rect(goal_pos[0], goal_pos[1], goal_size, goal_size)
-        pygame.draw.rect(screen, GREEN, goal_rect)
 
     # Draw coins
     for coin in coins:
@@ -220,16 +215,16 @@ while running:
     # Update explored areas
     update_explored()
 
-    # Check for reaching the gates on level 1
-    if current_level == 0:
-        for goal_name, goal in levelZeroGoals.items():
-            #print(f"{goal_name}: {goal}")
-            goal_rect = pygame.Rect(goal["pos"][0], goal["pos"][1], goal["size"], goal["size"])
-            #pygame.draw.rect(screen, goal["color"], goal_rect)
-            if new_rect.colliderect(goal_rect):
-                score += 100
-                current_level = goal["sendtolevel"]
-                reset_level()
+
+
+    for goal_name, goal in Level.level_goals[current_level].items():
+        goal_rect = pygame.Rect(goal["pos"][0], goal["pos"][1], goal["size"], goal["size"])
+
+        if new_rect.colliderect(goal_rect):
+            print(f"Player reached {goal_name}! Moving to level {goal['sendtolevel']}.")
+            score += 100
+            current_level = goal["sendtolevel"]
+            reset_level()
 
     # Check for reaching the goal
     goal_rect = pygame.Rect(WIDTH - 50, HEIGHT - 50, goal_size, goal_size)
