@@ -8,12 +8,22 @@ start_positions = [[390, 290], [390, 580], [50, 50], [50, 50], [50, 50], [50, 50
 import Colors as C
 levels_color = [C.GREEN, (140, 100, 100), C.GREY, C.GREY, C.GREY, C.GREY, C.GREY,]
 
-levelZeroGoals = {
-    "goalN": {"pos": [WIDTH //2, 0], "sendtolevel": 1, "sendtopos": [WIDTH //2, HEIGHT], "color": GREEN, "size": 20},
-    "goalE": {"pos": [WIDTH, HEIGHT//2], "sendtolevel": 2, "sendtopos": [50, 50], "color": GREEN, "size": 20},
-    "goalS": {"pos": [WIDTH //2, HEIGHT], "sendtolevel": 3, "sendtopos": [50, 50], "color": GREEN, "size": 20},
-    "goalW": {"pos": [0, HEIGHT//2], "sendtolevel": 4, "sendtopos": [50, 50], "color": GREEN, "size": 20},
+level_goals = {
+    0: {
+        "goalN": {"pos": [WIDTH //2, 0], "sendtolevel": 1, "sendtopos": [WIDTH //2, HEIGHT], "color": C.GREEN, "size": 20},
+        "goalE": {"pos": [WIDTH, HEIGHT//2], "sendtolevel": 2, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
+        "goalS": {"pos": [WIDTH //2, HEIGHT], "sendtolevel": 3, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
+        "goalW": {"pos": [0, HEIGHT//2], "sendtolevel": 4, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
+    },
+
+    1: {
+        "goalN": {"pos": [WIDTH //2, 0], "sendtolevel": 1.1, "sendtopos": [WIDTH //2, HEIGHT], "color": C.GREEN, "size": 20},
+        "goalE": {"pos": [WIDTH, HEIGHT//2], "sendtolevel": 1.2, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
+        "goalS": {"pos": [WIDTH //2, HEIGHT], "sendtolevel": 1.3, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
+        "goalW": {"pos": [0, HEIGHT//2], "sendtolevel": 1.4, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
+    },
 }
+
 
 levels = {
     "0": {
