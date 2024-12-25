@@ -16,7 +16,10 @@ pygame.display.set_caption("Maze Runner")
 # Player settings
 player_size = 20
 player_speed = 5
+
+#Power ups
 player_power = []
+extra_lives = ["extralife", "extralife2"]
 
 #powerup settings
 speed_boost1_attained = False
@@ -332,18 +335,24 @@ while running:
 
         # Player collision
         if new_rect.colliderect(enemy_rect):
-            if not "extralife" in player_power:
-                print("Enemy collision. Reset")
+            #No extra life, you reset
+            if not any(item in player_power for item in extra_lives):
                 #running = False
                 score -= 50
                 current_level = 0
                 start_position = [390, 290]
                 reset_level()
             else:
-                #Extra life saves you and get rid of that enemy
-                print("Enemy collision. Saved")
-                player_power.remove("extralife")
-                enemies.remove(enemy)
+                #Check for extra life
+                for extra_life in extra_lives:
+                    if extra_life in player_power:
+                        #Extra life saves you and get rid of that enemy
+                        print("Enemy collision. Saved")
+                        player_power.remove(extra_life)
+                        enemies.remove(enemy)
+                        print("Enemy collision. Reset")
+            
+                
 
 
     # Draw game
