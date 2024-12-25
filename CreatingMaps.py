@@ -98,7 +98,7 @@ def add_gap_to_wall(wall, gap_start, gap_width):
 
 
 #Create horizontal walls
-for i in list(range(math.ceil(hor_walls/2))):
+for i in list(range(hor_walls//2 -1)):
     #Calculate positions for all walls
     new_wall = (hor_start + hor_dec_amount*i, vert_start + ver_dec_amount*i, hori_length - hor_dec_amount*(i*2), Width)
     if not any(val < 0 for val in new_wall):#check they don't have any negative numbers
@@ -124,7 +124,8 @@ for i in list(range(math.ceil(hor_walls/2))):
                 customwalls.append(wall)
         else:#Keep wall as is for the last one
             customwalls.append(new_wall)
-    new_wall = (hor_start + hor_dec_amount*i, (HEIGHT -vert_start - ver_dec_amount*i)-10, hori_length - hor_dec_amount*(i*2), Width)
+for i in list(range(hor_walls//2 -1)):
+    new_wall = (hor_start + hor_dec_amount*i, (HEIGHT -vert_start - ver_dec_amount*i), hori_length - hor_dec_amount*(i*2), Width)
     if not any(val < 0 for val in new_wall):
         if i == 0:
             length_in = new_wall[2]//3 -15
@@ -148,12 +149,12 @@ for i in list(range(math.ceil(hor_walls/2))):
         else:#Keep wall as is for the last one
             customwalls.append(new_wall)
 #Create vertical walls
-for i in list(range(math.ceil(ver_walls/2))):
+for i in list(range((ver_walls//2))):
     new_wall = (hor_start + hor_dec_amount*i, vert_start + ver_dec_amount*i, Width, vert_length - ver_dec_amount*(i*2))
     if not any(val < 0 for val in new_wall):
 
         customwalls.append(new_wall)
-    new_wall = ((WIDTH -hor_start - hor_dec_amount*i - 10), vert_start + ver_dec_amount*i, Width, 10 +vert_length - ver_dec_amount*(i*2))
+    new_wall = ((WIDTH -hor_start - hor_dec_amount*i), vert_start + ver_dec_amount*i, Width, 10 +vert_length - ver_dec_amount*(i*2))
     if not any(val < 0 for val in new_wall):
         customwalls.append(new_wall)
 

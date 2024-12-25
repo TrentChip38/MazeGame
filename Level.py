@@ -1,13 +1,24 @@
 # Screen dimensions
 WIDTH, HEIGHT = 800, 600
-mid_top_goal = [WIDTH//2 -10, 0]
-mid_right_goal = [WIDTH-20, HEIGHT//2 -10]
-mid_bottom_goal = [WIDTH//2 - 10,HEIGHT-20]
-mid_left_goal = [0, HEIGHT//2 -10]
+mid_top_goal = [WIDTH//2 -20, -20]
+mid_right_goal = [WIDTH-20, HEIGHT//2 -20]
+mid_bottom_goal = [WIDTH//2 - 20,HEIGHT-20]
+mid_left_goal = [-20, HEIGHT//2 -20]
+
+# mid_top_goal_big = [WIDTH//2 -10, 0]
+# mid_right_goal_big = [WIDTH-20, HEIGHT//2 -10]
+# mid_bottom_goal_big = [WIDTH//2 - 10,HEIGHT-20]
+# mid_left_goal_big = [0, HEIGHT//2 -10]
+
+mid_top_goal_thin = [WIDTH//2 -10, -10]
+mid_right_goal_thin = [WIDTH -10, HEIGHT//2]
+mid_bottom_goal_thin = [WIDTH//2 - 10, HEIGHT-10]
+mid_left_goal_thin = [-10, HEIGHT//2 -10]
+
 middle_middle = [390, 290]
 
-bigger_goal_size = 20
-default_goal_size = 20
+bigger_goal_size = 40
+default_goal_size = 40
 
 corner_start = [50, 50]
 top_start = [390, 30]
@@ -21,7 +32,7 @@ start_positions = {0:[390, 290], 1:[390, 560], 2:[20, 280]}
 # Levels and Walls
 import Colors as C
 levels_color = {0: C.GREEN, 1:(140, 100, 100), 2:C.GREY, 3: C.GREY, 4: C.GREY, 42: C.GREY, 44: C.GREY, 14: C.GREY, 12: C.GREY, 55: C.GREY, 56: C.GREY, 57: C.GREY}
-
+levels_enemies = {0: 0, 141: 10}
 level_goals = {
     0: {
         "goalN": {"pos": mid_top_goal, "sendtolevel": 1, "sendtopos": bottom_start, "color": C.GREEN, "size": 20},
@@ -55,17 +66,27 @@ level_goals = {
     },
     14: {
         "goalE": {"pos": mid_bottom_goal, "sendtolevel": 4, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
-        "goalW": {"pos": mid_top_goal, "sendtolevel": 0, "sendtopos": middle_middle, "color": C.GREY, "size": default_goal_size},
+        "goalN": {"pos": mid_top_goal, "sendtolevel": 141, "sendtopos": bottom_start, "color": C.GREY, "size": default_goal_size},
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 56, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 55, "sendtopos": right_start, "color": C.GREY, "size": default_goal_size},
     },
     12: {
         "goalN": {"pos": mid_top_goal, "sendtolevel": 56, "sendtopos": bottom_start, "color": C.GREY, "size": default_goal_size},
-        "goalE": {"pos": mid_bottom_goal, "sendtolevel": 57, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
+        "goalE": {"pos": mid_bottom_goal, "sendtolevel": 57, "sendtopos": middle_middle, "color": C.GREY, "size": default_goal_size},
         "goalS": {"pos": mid_bottom_goal, "sendtolevel": 2, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
         "goalW": {"pos": mid_left_goal, "sendtolevel": 1, "sendtopos": right_start, "color": C.GREY, "size": default_goal_size},
     },
     11: {
         "goalS": {"pos": mid_bottom_goal, "sendtolevel": 2, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
         "goalW": {"pos": mid_left_goal, "sendtolevel": 1, "sendtopos": right_start, "color": C.GREY, "size": default_goal_size},
+    },
+    141: {
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 14, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 1414, "sendtopos": right_start, "color": C.GREY, "size": default_goal_size},
+    },
+    1414: {
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 0, "sendtopos": corner_start, "color": C.GREEN, "size": default_goal_size},
+        "goalW": {"pos": mid_right_goal, "sendtolevel": 141, "sendtopos": left_start, "color": C.GREY, "size": default_goal_size},
     },
     55: {
         "goalN": {"pos": mid_top_goal, "sendtolevel": 1, "sendtopos": bottom_start, "color": C.GREY, "size": default_goal_size},
@@ -80,10 +101,10 @@ level_goals = {
         "goalW": {"pos": mid_left_goal, "sendtolevel": 4, "sendtopos": right_start, "color": C.GREY, "size": default_goal_size},
     },
     57: {
-        "goalN": {"pos": mid_top_goal, "sendtolevel": 1, "sendtopos": bottom_start, "color": C.GREY, "size": default_goal_size},
-        "goalE": {"pos": mid_right_goal, "sendtolevel": 2, "sendtopos": left_start, "color": C.GREY, "size": default_goal_size},
-        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 3, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
-        "goalW": {"pos": mid_left_goal, "sendtolevel": 4, "sendtopos": right_start, "color": C.GREY, "size": default_goal_size},
+        "goalN": {"pos": mid_top_goal_thin, "sendtolevel": 1, "sendtopos": bottom_start, "color": C.GREY, "size": 20},
+        "goalE": {"pos": mid_right_goal_thin, "sendtolevel": 2, "sendtopos": left_start, "color": C.GREY, "size": 20},
+        "goalS": {"pos": mid_bottom_goal_thin, "sendtolevel": 3, "sendtopos": top_start, "color": C.GREY, "size": 20},
+        "goalW": {"pos": mid_left_goal_thin, "sendtolevel": 4, "sendtopos": right_start, "color": C.GREY, "size": 20},
     },
 }
 
@@ -229,6 +250,20 @@ levels = {
         (720, 80, 20, 200),        # 12th vertical
         (780, 20, 20, 200),        # Right vertical
     },
+    141:{
+        (0, 0, 800, 10), (0, 590, 800, 10), (0, 0, 10, 600), (790, 0, 10, 600), (43, 39, 219, 10), (292, 39, 219, 10), 
+        (541, 39, 206, 10), (86, 78, 89, 10), (212, 78, 481, 10), (732, 78, -28, 10), (129, 117, 23, 10), (190, 117, 148, 10), 
+        (373, 117, 288, 10), (172, 156, 144, 10), (353, 156, 51, 10), (440, 156, 178, 10), (215, 195, 318, 10), (565, 195, 10, 10), 
+        (258, 234, 249, 10), (547, 234, -15, 10), (301, 273, 163, 10), (503, 273, -14, 10), (43, 551, 219, 10), (292, 551, 219, 10), 
+        (541, 551, 206, 10), (86, 512, 183, 10), (307, 512, 150, 10), (495, 512, 209, 10), (129, 473, 153, 10), (319, 473, 316, 10), 
+        (668, 473, -7, 10), (172, 434, 86, 10), (295, 434, 295, 10), (621, 434, -3, 10), (215, 395, 297, 10), (544, 395, 31, 10), 
+        (258, 356, 156, 10), (444, 356, 88, 10), (301, 317, 128, 10), (464, 317, 25, 10), (43, 39, 10, 512), (747, 39, 10, 522), 
+        (86, 78, 10, 434), (704, 78, 10, 444), (129, 117, 10, 356), (661, 117, 10, 366), (172, 156, 10, 278), (618, 156, 10, 288), 
+        (215, 195, 10, 200), (575, 195, 10, 210), (258, 234, 10, 122), (532, 234, 10, 132), (301, 273, 10, 44), (489, 273, 10, 54)
+    },
+    1414:{
+
+    },
     55:{
         # Outer walls
         (0, 0, 800, 20),           # Top wall
@@ -285,7 +320,7 @@ levels = {
         # (580, 200, 10, 210), (264, 240, 10, 120), (536, 240, 10, 130), (308, 280, 10, 40), (492, 280, 10, 50)
 
         #Puttin holes in the wall
-        (0, 0, 800, 10), (0, 590, 800, 10), (0, 0, 10, 600), (790, 0, 10, 600), (44, 40, 222, 10), (296, 40, 222, 10), (548, 40, 208, 10), (44, 550, 222, 10), (296, 550, 222, 10), (548, 550, 208, 10), (88, 80, 36, 10), (155, 80, 142, 10), (330, 80, 382, 10), (88, 510, 18, 10), (138, 510, 197, 10), (371, 510, 341, 10), (132, 120, 64, 10), (227, 120, 8, 10), (268, 120, 400, 10), (132, 470, 91, 10), (260, 470, 264, 10), (562, 470, 106, 10), (176, 160, 78, 10), (289, 160, 282, 10), (603, 160, 21, 10), (176, 430, 149, 10), (356, 430, 78, 10), (471, 430, 153, 10), (220, 200, 195, 10), (452, 200, 128, 10), (220, 390, 13, 10), (272, 390, 308, 10), (264, 240, 108, 10), (403, 240, 133, 10), (264, 350, 123, 10), (427, 350, 109, 10), (308, 280, 83, 10), (426, 280, 66, 10), (308, 310, 93, 10), (435, 310, 57, 10), (352, 320, 44, 10), (429, 320, 19, 10), (352, 270, 94, 10), (485, 270, -37, 10), (396, 360, 8, 10), (396, 230, 8, 10), (44, 40, 10, 520), (746, 40, 10, 530), (88, 80, 10, 440), (702, 80, 10, 450), (132, 120, 10, 360), (658, 120, 10, 370), (176, 160, 10, 280), (614, 160, 10, 290), (220, 200, 10, 200), (570, 200, 10, 210), (264, 240, 10, 120), (526, 240, 10, 130), (308, 280, 10, 40), (482, 280, 10, 50)
-        
+        (0, 0, 800, 10), (0, 590, 800, 10), (0, 0, 10, 600), (790, 0, 10, 600), (43, 39, 219, 10), (292, 39, 219, 10), (541, 39, 206, 10), (86, 78, 89, 10), (212, 78, 481, 10), (732, 78, -28, 10), (129, 117, 23, 10), (190, 117, 148, 10), (373, 117, 288, 10), (172, 156, 144, 10), (353, 156, 51, 10), (440, 156, 178, 10), (215, 195, 318, 10), (565, 195, 10, 10), (258, 234, 249, 10), (547, 234, -15, 10), (301, 273, 163, 10), (503, 273, -14, 10), (43, 551, 219, 10), (292, 551, 219, 10), (541, 551, 206, 10), (86, 512, 183, 10), (307, 512, 150, 10), (495, 512, 209, 10), (129, 473, 153, 10), (319, 473, 316, 10), (668, 473, -7, 10), (172, 434, 86, 10), (295, 434, 295, 10), (621, 434, -3, 10), (215, 395, 297, 10), (544, 395, 31, 10), (258, 356, 156, 10), (444, 356, 88, 10), (301, 317, 128, 10), (464, 317, 25, 10), (43, 39, 10, 512), (747, 39, 10, 522), (86, 78, 10, 434), (704, 78, 10, 444), (129, 117, 10, 356), (661, 117, 10, 366), (172, 156, 10, 278), (618, 156, 10, 288), (215, 195, 10, 200), (575, 195, 10, 210), (258, 234, 10, 122), (532, 234, 10, 132), (301, 273, 10, 44), (489, 273, 10, 54)
+
         }
 }

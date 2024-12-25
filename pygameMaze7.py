@@ -49,7 +49,7 @@ score = 0
 clock = pygame.time.Clock()
 
 # Beginning level
-current_level = 57#0
+current_level = 0
 coins = []
 enemies = []
 global start_position
@@ -81,7 +81,11 @@ def reset_level():
                 break
 
     # Generate enemies
-    for _ in range(default_enemy_amount):#current_level + 2
+    enemy_amount = default_enemy_amount
+    #unless there is a specified amount on that level
+    if current_level in Level.levels_enemies:
+        enemy_amount = Level.levels_enemies[current_level]
+    for _ in range(enemy_amount):#current_level + 2
         while True:
             enemy = [
                 #Position
@@ -103,7 +107,10 @@ def reset_level():
 # Function to draw everything
 def draw_game():
     # Clear screen with gray background
-    color = Level.levels_color[current_level]
+    if current_level in Level.levels_color:
+        color = Level.levels_color[current_level]
+    else:
+        color = C.GREY
     screen.fill(color)
 
     # Draw walls (walls are always black)
