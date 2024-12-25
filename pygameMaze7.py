@@ -225,9 +225,12 @@ while running:
                 speed_boost_toggle = 1
                 player_speed = 10
     #updating speed
-        if "speedboost1" in player_power and speed_boost1_attained == False:
-            player_speed += 1
-            speed_boost1_attained = True
+    if "speedboost1" in player_power and speed_boost1_attained == False:
+        player_speed += 1
+        speed_boost1_attained = True
+    #vision
+    if "vision4" in player_power:
+        vis_radius = 4
 
     # Move player with collision detection
     new_pos = [player_pos[0] + dx, player_pos[1] + dy]
