@@ -49,7 +49,7 @@ score = 0
 clock = pygame.time.Clock()
 
 # Beginning level
-current_level = 56#0
+current_level = 57#0
 coins = []
 enemies = []
 global start_position

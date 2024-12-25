@@ -20,7 +20,7 @@ start_positions = {0:[390, 290], 1:[390, 560], 2:[20, 280]}
 
 # Levels and Walls
 import Colors as C
-levels_color = {0: C.GREEN, 1:(140, 100, 100), 2:C.GREY, 3: C.GREY, 4: C.GREY, 42: C.GREY, 44: C.GREY, 14: C.GREY, 12: C.GREY, 55: C.GREY, 56: C.GREY}
+levels_color = {0: C.GREEN, 1:(140, 100, 100), 2:C.GREY, 3: C.GREY, 4: C.GREY, 42: C.GREY, 44: C.GREY, 14: C.GREY, 12: C.GREY, 55: C.GREY, 56: C.GREY, 57: C.GREY}
 
 level_goals = {
     0: {
@@ -36,46 +36,54 @@ level_goals = {
         "goalW": {"pos": mid_left_goal, "sendtolevel": 14, "sendtopos": right_start, "color": C.GREY, "size": bigger_goal_size},
     },
     2: {
-        "goalN": {"pos": mid_top_goal, "sendtolevel": 21, "sendtopos": bottom_start, "color": C.GREY, "size": 20},
-        "goalE": {"pos": mid_right_goal, "sendtolevel": 22, "sendtopos": left_start, "color": C.GREY, "size": 20},
-        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 23, "sendtopos": top_start, "color": C.GREY, "size": 20},
-        "goalW": {"pos": mid_left_goal, "sendtolevel": 0, "sendtopos": right_start, "color": C.GREEN, "size": 20},
+        "goalN": {"pos": mid_top_goal, "sendtolevel": 21, "sendtopos": bottom_start, "color": C.GREY, "size": default_goal_size},
+        "goalE": {"pos": mid_right_goal, "sendtolevel": 22, "sendtopos": left_start, "color": C.GREY, "size": default_goal_size},
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 23, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 0, "sendtopos": right_start, "color": C.GREEN, "size": default_goal_size},
     },
     3: {
-        "goalN": {"pos": mid_top_goal, "sendtolevel": 0, "sendtopos": bottom_start, "color": C.GREEN, "size": 20},
-        "goalE": {"pos": mid_right_goal, "sendtolevel": 32, "sendtopos": left_start, "color": C.GREY, "size": 20},
-        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 33, "sendtopos": top_start, "color": C.GREY, "size": 20},
-        "goalW": {"pos": mid_left_goal, "sendtolevel": 34, "sendtopos": right_start, "color": C.GREY, "size": 20},
+        "goalN": {"pos": mid_top_goal, "sendtolevel": 0, "sendtopos": bottom_start, "color": C.GREEN, "size": default_goal_size},
+        "goalE": {"pos": mid_right_goal, "sendtolevel": 32, "sendtopos": left_start, "color": C.GREY, "size": default_goal_size},
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 33, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 34, "sendtopos": right_start, "color": C.GREY, "size": default_goal_size},
     },
     4: {
-        "goalN": {"pos": mid_top_goal, "sendtolevel": 41, "sendtopos": bottom_start, "color": C.GREY, "size": 20},
-        "goalE": {"pos": mid_right_goal, "sendtolevel": 0, "sendtopos": left_start, "color": C.GREEN, "size": 20},
-        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 43, "sendtopos": top_start, "color": C.GREY, "size": 20},
-        "goalW": {"pos": mid_left_goal, "sendtolevel": 44, "sendtopos": right_start, "color": C.GREY, "size": 20},
+        "goalN": {"pos": mid_top_goal, "sendtolevel": 41, "sendtopos": bottom_start, "color": C.GREY, "size": default_goal_size},
+        "goalE": {"pos": mid_right_goal, "sendtolevel": 0, "sendtopos": left_start, "color": C.GREEN, "size": default_goal_size},
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 43, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 44, "sendtopos": right_start, "color": C.GREY, "size": default_goal_size},
     },
     14: {
-        "goalE": {"pos": mid_bottom_goal, "sendtolevel": 4, "sendtopos": top_start, "color": C.GREY, "size": 20},
-        "goalW": {"pos": mid_top_goal, "sendtolevel": 0, "sendtopos": middle_middle, "color": C.GREY, "size": 20},
+        "goalE": {"pos": mid_bottom_goal, "sendtolevel": 4, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
+        "goalW": {"pos": mid_top_goal, "sendtolevel": 0, "sendtopos": middle_middle, "color": C.GREY, "size": default_goal_size},
     },
     12: {
-        "goalS": {"pos": [WIDTH //2, HEIGHT], "sendtolevel": 2, "sendtopos": [50, 50], "color": C.GREY, "size": 20},
-        "goalW": {"pos": mid_left_goal, "sendtolevel": 1, "sendtopos": right_start, "color": C.GREY, "size": 20},
+        "goalN": {"pos": mid_top_goal, "sendtolevel": 56, "sendtopos": bottom_start, "color": C.GREY, "size": default_goal_size},
+        "goalE": {"pos": mid_bottom_goal, "sendtolevel": 57, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 2, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 1, "sendtopos": right_start, "color": C.GREY, "size": default_goal_size},
     },
     11: {
-        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 2, "sendtopos": top_start, "color": C.GREY, "size": 20},
-        "goalW": {"pos": mid_left_goal, "sendtolevel": 1, "sendtopos": right_start, "color": C.GREY, "size": 20},
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 2, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 1, "sendtopos": right_start, "color": C.GREY, "size": default_goal_size},
     },
     55: {
-        "goalN": {"pos": mid_top_goal, "sendtolevel": 1, "sendtopos": bottom_start, "color": C.GREY, "size": 20},
-        "goalE": {"pos": mid_right_goal, "sendtolevel": 2, "sendtopos": left_start, "color": C.GREY, "size": 20},
-        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 3, "sendtopos": top_start, "color": C.GREY, "size": 20},
-        "goalW": {"pos": mid_left_goal, "sendtolevel": 4, "sendtopos": right_start, "color": C.GREY, "size": 20},
+        "goalN": {"pos": mid_top_goal, "sendtolevel": 1, "sendtopos": bottom_start, "color": C.GREY, "size": default_goal_size},
+        "goalE": {"pos": mid_right_goal, "sendtolevel": 2, "sendtopos": left_start, "color": C.GREY, "size": default_goal_size},
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 3, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 4, "sendtopos": right_start, "color": C.GREY, "size": default_goal_size},
     },
     56: {
-        "goalN": {"pos": mid_top_goal, "sendtolevel": 1, "sendtopos": bottom_start, "color": C.GREY, "size": 20},
-        "goalE": {"pos": mid_right_goal, "sendtolevel": 2, "sendtopos": left_start, "color": C.GREY, "size": 20},
-        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 3, "sendtopos": top_start, "color": C.GREY, "size": 20},
-        "goalW": {"pos": mid_left_goal, "sendtolevel": 4, "sendtopos": right_start, "color": C.GREY, "size": 20},
+        "goalN": {"pos": mid_top_goal, "sendtolevel": 1, "sendtopos": bottom_start, "color": C.GREY, "size": default_goal_size},
+        "goalE": {"pos": mid_right_goal, "sendtolevel": 2, "sendtopos": left_start, "color": C.GREY, "size": default_goal_size},
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 3, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 4, "sendtopos": right_start, "color": C.GREY, "size": default_goal_size},
+    },
+    57: {
+        "goalN": {"pos": mid_top_goal, "sendtolevel": 1, "sendtopos": bottom_start, "color": C.GREY, "size": default_goal_size},
+        "goalE": {"pos": mid_right_goal, "sendtolevel": 2, "sendtopos": left_start, "color": C.GREY, "size": default_goal_size},
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 3, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 4, "sendtopos": right_start, "color": C.GREY, "size": default_goal_size},
     },
 }
 
@@ -257,5 +265,23 @@ levels = {
         (180, 180, 20, 260), (240, 240, 20, 140), (300, 300, 20, 20), #(360, 360, 20, -100), (420, 360, 20, -100), 
         (480, 300, 20, 20), (540, 240, 20, 140), (600, 180, 20, 260), (660, 120, 20, 380), (720, 60, 20, 500)
 
-    }
+    },
+    57:{
+        #Kinda messed up version
+        #(0, 0, 800, 10), (0, 590, 800, 10), (0, 0, 10, 600), (790, 0, 10, 600), (47, 42, 706, 10), (47, 558, 706, 10), 
+        #(94, 84, 612, 10), (94, 516, 612, 10), (141, 126, 518, 10), (141, 474, 518, 10), (188, 168, 424, 10), 
+        # (188, 432, 424, 10), (235, 210, 330, 10), (235, 390, 330, 10), (282, 252, 236, 10), (282, 348, 236, 10), 
+        # (329, 294, 142, 10), (329, 306, 142, 10), (376, 336, 48, 10), (376, 264, 48, 10), (47, 42, 10, 516), 
+        # (753, 42, 10, 526), (94, 84, 10, 432), (706, 84, 10, 442), (141, 126, 10, 348), (659, 126, 10, 358), (188, 168, 10, 264), 
+        # (612, 168, 10, 274), (235, 210, 10, 180), (565, 210, 10, 190), (282, 252, 10, 96), (518, 252, 10, 106), (329, 294, 10, 12), (471, 294, 10, 22)
+        
+        #Super tight perfect boxes
+        (0, 0, 800, 10), (0, 590, 800, 10), (0, 0, 10, 600), (790, 0, 10, 600), (44, 40, 712, 10), (44, 560, 712, 10), 
+        (88, 80, 624, 10), (88, 520, 624, 10), (132, 120, 536, 10), (132, 480, 536, 10), (176, 160, 448, 10), 
+        (176, 440, 448, 10), (220, 200, 360, 10), (220, 400, 360, 10), (264, 240, 272, 10), (264, 360, 272, 10), 
+        (308, 280, 184, 10), (308, 320, 184, 10), (352, 320, 96, 10), (352, 280, 96, 10), (396, 360, 8, 10), 
+        (396, 240, 8, 10), (44, 40, 10, 520), (756, 40, 10, 530), (88, 80, 10, 440), (712, 80, 10, 450), 
+        (132, 120, 10, 360), (668, 120, 10, 370), (176, 160, 10, 280), (624, 160, 10, 290), (220, 200, 10, 200), 
+        (580, 200, 10, 210), (264, 240, 10, 120), (536, 240, 10, 130), (308, 280, 10, 40), (492, 280, 10, 50)
+        }
 }
