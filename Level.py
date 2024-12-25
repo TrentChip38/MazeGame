@@ -1,35 +1,81 @@
 # Screen dimensions
 WIDTH, HEIGHT = 800, 600
+mid_top_goal = [WIDTH//2 -10, 0]
+mid_right_goal = [WIDTH-20, HEIGHT//2 -10]
+mid_bottom_goal = [WIDTH//2 - 10,HEIGHT-20]
+mid_left_goal = [0, HEIGHT//2 -10]
+middle_middle = [390, 290]
+
+bigger_goal_size = 20
+default_goal_size = 20
+
+corner_start = [50, 50]
+top_start = [390, 30]
+bottom_start = [390, 550]
+right_start = [750, 290]
+left_start = [30, 290]
 
 # Player starting positions
 start_positions = {0:[390, 290], 1:[390, 560], 2:[20, 280]}
 
 # Levels and Walls
 import Colors as C
-levels_color = {0: C.GREEN, 1:(140, 100, 100), 2:C.GREY, 3: C.GREY, 4: C.GREY, 42: C.GREY, 44: C.GREY, 14: C.GREY}
+levels_color = {0: C.GREEN, 1:(140, 100, 100), 2:C.GREY, 3: C.GREY, 4: C.GREY, 42: C.GREY, 44: C.GREY, 14: C.GREY, 12: C.GREY, 55: C.GREY, 56: C.GREY}
 
 level_goals = {
     0: {
-        "goalN": {"pos": [WIDTH //2, 0], "sendtolevel": 1, "sendtopos": [WIDTH //2 -10, HEIGHT-40], "color": C.GREEN, "size": 20},
-        "goalE": {"pos": [WIDTH, HEIGHT//2], "sendtolevel": 2, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
-        "goalS": {"pos": [WIDTH //2, HEIGHT], "sendtolevel": 3, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
-        "goalW": {"pos": [0, HEIGHT//2], "sendtolevel": 4, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
+        "goalN": {"pos": mid_top_goal, "sendtolevel": 1, "sendtopos": bottom_start, "color": C.GREEN, "size": 20},
+        "goalE": {"pos": mid_right_goal, "sendtolevel": 2, "sendtopos": left_start, "color": C.GREEN, "size": 20},
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 3, "sendtopos": top_start, "color": C.GREEN, "size": 20},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 4, "sendtopos": right_start, "color": C.GREEN, "size": 20},
     },
     1: {
-        "goalN": {"pos": [WIDTH //2, 0], "sendtolevel": 11, "sendtopos": [WIDTH //2, HEIGHT], "color": C.GREEN, "size": 20},
-        "goalE": {"pos": [WIDTH, HEIGHT//2], "sendtolevel": 12, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
-        "goalS": {"pos": [WIDTH //2, HEIGHT], "sendtolevel": 13, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
-        "goalW": {"pos": [0, HEIGHT//2], "sendtolevel": 14, "sendtopos": [WIDTH - 40, HEIGHT//2 - 10], "color": C.GREEN, "size": 20},
+        "goalN": {"pos": mid_top_goal, "sendtolevel": 11, "sendtopos": bottom_start, "color": C.GREY, "size": bigger_goal_size},
+        "goalE": {"pos": mid_right_goal, "sendtolevel": 12, "sendtopos": left_start, "color": C.GREY, "size": bigger_goal_size},
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 0, "sendtopos": top_start, "color": C.GREEN, "size": bigger_goal_size},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 14, "sendtopos": right_start, "color": C.GREY, "size": bigger_goal_size},
     },
     2: {
-        "goalN": {"pos": [WIDTH //2, 0], "sendtolevel": 21, "sendtopos": [WIDTH //2, HEIGHT], "color": C.GREEN, "size": 20},
-        "goalE": {"pos": [WIDTH, HEIGHT//2], "sendtolevel": 22, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
-        "goalS": {"pos": [WIDTH //2, HEIGHT], "sendtolevel": 23, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
-        "goalW": {"pos": [0, HEIGHT//2], "sendtolevel": 24, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
+        "goalN": {"pos": mid_top_goal, "sendtolevel": 21, "sendtopos": bottom_start, "color": C.GREY, "size": 20},
+        "goalE": {"pos": mid_right_goal, "sendtolevel": 22, "sendtopos": left_start, "color": C.GREY, "size": 20},
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 23, "sendtopos": top_start, "color": C.GREY, "size": 20},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 0, "sendtopos": right_start, "color": C.GREEN, "size": 20},
+    },
+    3: {
+        "goalN": {"pos": mid_top_goal, "sendtolevel": 0, "sendtopos": bottom_start, "color": C.GREEN, "size": 20},
+        "goalE": {"pos": mid_right_goal, "sendtolevel": 32, "sendtopos": left_start, "color": C.GREY, "size": 20},
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 33, "sendtopos": top_start, "color": C.GREY, "size": 20},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 34, "sendtopos": right_start, "color": C.GREY, "size": 20},
+    },
+    4: {
+        "goalN": {"pos": mid_top_goal, "sendtolevel": 41, "sendtopos": bottom_start, "color": C.GREY, "size": 20},
+        "goalE": {"pos": mid_right_goal, "sendtolevel": 0, "sendtopos": left_start, "color": C.GREEN, "size": 20},
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 43, "sendtopos": top_start, "color": C.GREY, "size": 20},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 44, "sendtopos": right_start, "color": C.GREY, "size": 20},
     },
     14: {
-        "goalS": {"pos": [WIDTH //2, HEIGHT], "sendtolevel": 1, "sendtopos": [50, 50], "color": C.GREEN, "size": 20},
-        "goalW": {"pos": [0, HEIGHT//2], "sendtolevel": 0, "sendtopos": [380, 280], "color": C.GREEN, "size": 20},
+        "goalE": {"pos": mid_bottom_goal, "sendtolevel": 4, "sendtopos": top_start, "color": C.GREY, "size": 20},
+        "goalW": {"pos": mid_top_goal, "sendtolevel": 0, "sendtopos": middle_middle, "color": C.GREY, "size": 20},
+    },
+    12: {
+        "goalS": {"pos": [WIDTH //2, HEIGHT], "sendtolevel": 2, "sendtopos": [50, 50], "color": C.GREY, "size": 20},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 1, "sendtopos": right_start, "color": C.GREY, "size": 20},
+    },
+    11: {
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 2, "sendtopos": top_start, "color": C.GREY, "size": 20},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 1, "sendtopos": right_start, "color": C.GREY, "size": 20},
+    },
+    55: {
+        "goalN": {"pos": mid_top_goal, "sendtolevel": 1, "sendtopos": bottom_start, "color": C.GREY, "size": 20},
+        "goalE": {"pos": mid_right_goal, "sendtolevel": 2, "sendtopos": left_start, "color": C.GREY, "size": 20},
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 3, "sendtopos": top_start, "color": C.GREY, "size": 20},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 4, "sendtopos": right_start, "color": C.GREY, "size": 20},
+    },
+    56: {
+        "goalN": {"pos": mid_top_goal, "sendtolevel": 1, "sendtopos": bottom_start, "color": C.GREY, "size": 20},
+        "goalE": {"pos": mid_right_goal, "sendtolevel": 2, "sendtopos": left_start, "color": C.GREY, "size": 20},
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 3, "sendtopos": top_start, "color": C.GREY, "size": 20},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 4, "sendtopos": right_start, "color": C.GREY, "size": 20},
     },
 }
 
@@ -59,7 +105,7 @@ levels = {
     },
     3:{
         # Level 3
-        (400, 0, 20, 200), (300, 100, 20, 300), (500, 0, 20, 400), (700, 200, 20, 200),
+        (420, 0, 20, 200), (300, 100, 20, 300), (500, 0, 20, 400), (700, 200, 20, 200),
         (400, 500, 200, 20), (200, 300, 20, 200), (0, 100, 200, 20), (600, 100, 20, 200),
         (300, 500, 20, 100), (150, 400, 200, 20), (400, 400, 20, 100), (600, 300, 100, 20),
     },
@@ -69,7 +115,7 @@ levels = {
         (300, 400, 200, 20), (100, 300, 200, 20), (0, 500, 300, 20), (0, 400, 20, 100),
         (100, 200, 20, 100), (400, 100, 200, 20), (600, 200, 20, 100),
     },
-    12:{
+    13:{
         # Level 5
         (0, 100, 600, 20), (0, 200, 200, 20), (300, 100, 20, 300), (500, 100, 20, 400),
         (600, 400, 200, 20), (200, 300, 100, 20), (700, 150, 20, 350), (400, 500, 200, 20),
@@ -107,6 +153,41 @@ levels = {
         (640, 40, 20, 520),        # 8th vertical
         (720, 40, 20, 520),        # Right vertical
     },
+    12:{
+            # tighter grid
+        (0, 0, 800, 20),           # Top wall
+        (0, 580, 800, 20),         # Bottom wall
+        (0, 0, 20, 600),           # Left wall
+        (780, 0, 20, 600),         # Right wall
+
+        # Horizontal walls
+        (0, 60, 280, 20),          # Top horizontal
+        (340, 60, 120, 20),
+        (500, 60, 300, 20),
+        (250, 120, 250, 20),       # 2nd horizontal
+        (0, 120, 200, 20),
+        (600, 120, 200, 20),        
+        (100, 180, 250, 20),        # 3rd horizontal
+        (450, 180, 250, 20),
+        (200, 240, 300, 20),        # 4th horizontal
+        (400, 300, 200, 20),        # 5th horizontal
+        (200, 360, 400, 20),        # 6th horizontal
+        (100, 420, 250, 20),        # 7th horizontal
+        (450, 420, 250, 20),
+        (250, 480, 250, 20),        # 8th horizontal
+        (0, 480, 200, 20),
+        (600, 480, 200, 20),
+        (0, 540, 280, 20),        # Bottom horizontal
+        (340, 540, 120, 20),
+        (500, 540, 300, 20),
+
+        # Vertical walls
+        
+        #(300, 400, 20, 200),        # 5th vertical
+        #(540, 40, 20, 200),        # 9th vertical
+        #(620, 200, 20, 200),        # 12th vertical
+        #(780, 20, 20, 200),        # Right vertical
+    },
     14:{
             # tighter grid
         (0, 0, 800, 10),           # Top wall
@@ -139,5 +220,42 @@ levels = {
         (660, 40, 20, 200),        # 11th vertical
         (720, 80, 20, 200),        # 12th vertical
         (780, 20, 20, 200),        # Right vertical
+    },
+    55:{
+        # Outer walls
+        (0, 0, 800, 20),           # Top wall
+        (0, 580, 800, 20),         # Bottom wall
+        (0, 0, 20, 600),           # Left wall
+        (780, 0, 20, 600),         # Right wall
+
+        # Horizontal walls
+        (70, 80, 660, 20),         # Top horizontal
+        (150, 160, 500, 20),        # 2nd horizontal
+        (230, 240, 340, 20),        # 3rd horizontal
+        #(310, 320, 180, 20),        # 4th horizontal
+        (230, 340, 340, 20),        # 5th horizontal
+        (150, 420, 500, 20),        # 5th horizontal
+        (70, 500, 660, 20),        # Bottom horizontal
+
+        # Vertical walls
+        (70, 80, 20, 190),         # Left vertical
+        (70, 330, 20, 190),
+        (150, 160, 20, 280),        # 2nd vertical
+        (230, 240, 20, 120),        # 3rd vertical
+        #(310, 80, 20, 440),        # 4th vertical
+        #(390, 80, 20, 460),        # Center vertical
+        #(470, 80, 20, 440),        # 6th vertical
+        (550, 240, 20, 120),        # 7th vertical
+        (630, 160, 20, 280),        # 8th vertical
+        (710, 80, 20, 180),        # Right vertical
+        (710, 340, 20, 180), 
+    },
+    56:{
+        (0, 0, 800, 20), (0, 590, 800, 20), (0, 0, 20, 600), (790, 0, 20, 600), (60, 60, 680, 20), 
+        (120, 120, 560, 20), (180, 180, 440, 20), (240, 240, 320, 20), (300, 320, 200, 20), (240, 360, 320, 20), 
+        (180, 420, 440, 20), (120, 480, 560, 20), (60, 540, 680, 20), (60, 60, 20, 500), (120, 120, 20, 380), 
+        (180, 180, 20, 260), (240, 240, 20, 140), (300, 300, 20, 20), #(360, 360, 20, -100), (420, 360, 20, -100), 
+        (480, 300, 20, 20), (540, 240, 20, 140), (600, 180, 20, 260), (660, 120, 20, 380), (720, 60, 20, 500)
+
     }
 }

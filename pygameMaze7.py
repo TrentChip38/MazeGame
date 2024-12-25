@@ -22,6 +22,7 @@ enemy_speed = 8
 default_enemy_amount = 4
 
 # Visibility settings
+Darkness_on = False
 vis_radius = 2
 vis_y_left = vis_radius - 1
 vis_y_right = vis_radius + 1
@@ -48,7 +49,7 @@ score = 0
 clock = pygame.time.Clock()
 
 # Beginning level
-current_level = 0
+current_level = 56#0
 coins = []
 enemies = []
 global start_position
@@ -123,7 +124,7 @@ def draw_game():
         pygame.draw.rect(screen, C.RED, (enemy[0], enemy[1], enemy_size, enemy_size))
     
     # Draw unexplored areas in black
-    if current_level == 0:
+    if current_level == 0 or Darkness_on == False:
         #don't draw
         pass
     else:
@@ -209,7 +210,10 @@ while running:
         if new_rect.colliderect(goal_rect):
             print(f"Player reached {goal_name}! Moving to level {goal['sendtolevel']}.")
             score += 100
-            current_level = goal["sendtolevel"]
+            if goal["sendtolevel"] in Level.levels:
+                current_level = goal["sendtolevel"]
+            else:
+                current_level = 55 #the ghost level
             start_position = goal["sendtopos"]
             reset_level()
 
@@ -298,8 +302,13 @@ while running:
 
         # Player collision
         if new_rect.colliderect(enemy_rect):
-            print("Game Over! Enemy collision.")
-            running = False
+            print("Enemy collision. Reset")
+            #running = False
+            score -= 50
+            current_level = 0
+            start_position = [390, 290]
+            reset_level()
+
 
     # Draw game
     draw_game()
