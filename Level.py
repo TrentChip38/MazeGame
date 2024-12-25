@@ -11,8 +11,8 @@ mid_left_goal = [-20, HEIGHT//2 -20]
 # mid_left_goal_big = [0, HEIGHT//2 -10]
 
 mid_top_goal_thin = [WIDTH//2 -10, -10]
-mid_right_goal_thin = [WIDTH -10, HEIGHT//2]
-mid_bottom_goal_thin = [WIDTH//2 - 10, HEIGHT-10]
+mid_right_goal_thin = [WIDTH +10, HEIGHT//2]
+mid_bottom_goal_thin = [WIDTH//2 - 10, HEIGHT+10]
 mid_left_goal_thin = [-10, HEIGHT//2 -10]
 
 middle_middle = [390, 290]
@@ -35,10 +35,10 @@ levels_color = {0: C.GREEN, 1:(140, 100, 100), 2:C.GREY, 3: C.GREY, 4: C.GREY, 4
 levels_enemies = {0: 0, 141: 10}
 level_goals = {
     0: {
-        "goalN": {"pos": mid_top_goal, "sendtolevel": 1, "sendtopos": bottom_start, "color": C.GREEN, "size": 20},
-        "goalE": {"pos": mid_right_goal, "sendtolevel": 2, "sendtopos": left_start, "color": C.GREEN, "size": 20},
-        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 3, "sendtopos": top_start, "color": C.GREEN, "size": 20},
-        "goalW": {"pos": mid_left_goal, "sendtolevel": 4, "sendtopos": right_start, "color": C.GREEN, "size": 20},
+        "goalN": {"pos": mid_top_goal, "sendtolevel": 1, "sendtopos": bottom_start, "color": C.GREEN, "size": default_goal_size},
+        "goalE": {"pos": mid_right_goal, "sendtolevel": 2, "sendtopos": left_start, "color": C.GREEN, "size": default_goal_size},
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 3, "sendtopos": top_start, "color": C.GREEN, "size": default_goal_size},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 4, "sendtopos": right_start, "color": C.GREEN, "size": default_goal_size},
     },
     1: {
         "goalN": {"pos": mid_top_goal, "sendtolevel": 11, "sendtopos": bottom_start, "color": C.GREY, "size": bigger_goal_size},
@@ -66,9 +66,10 @@ level_goals = {
     },
     14: {
         "goalE": {"pos": mid_bottom_goal, "sendtolevel": 4, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
-        "goalN": {"pos": mid_top_goal, "sendtolevel": 141, "sendtopos": bottom_start, "color": C.GREY, "size": default_goal_size},
+        "goalN": {"pos": mid_top_goal, "sendtolevel": 141, "sendtopos": [390, 560], "color": C.GREY, "size": default_goal_size},
         "goalS": {"pos": mid_bottom_goal, "sendtolevel": 56, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
         "goalW": {"pos": mid_left_goal, "sendtolevel": 55, "sendtopos": right_start, "color": C.GREY, "size": default_goal_size},
+        "goalP": {"pos": [90, 100], "addpower": "extralife", "color": C.YELLOW, "size": 20},
     },
     12: {
         "goalN": {"pos": mid_top_goal, "sendtolevel": 56, "sendtopos": bottom_start, "color": C.GREY, "size": default_goal_size},
@@ -86,7 +87,7 @@ level_goals = {
     },
     1414: {
         "goalS": {"pos": mid_bottom_goal, "sendtolevel": 0, "sendtopos": corner_start, "color": C.GREEN, "size": default_goal_size},
-        "goalW": {"pos": mid_right_goal, "sendtolevel": 141, "sendtopos": left_start, "color": C.GREY, "size": default_goal_size},
+        "goalW": {"pos": mid_right_goal, "sendtolevel": 141, "sendtopos": [20, 290], "color": C.GREY, "size": default_goal_size},
     },
     55: {
         "goalN": {"pos": mid_top_goal, "sendtolevel": 1, "sendtopos": bottom_start, "color": C.GREY, "size": default_goal_size},
@@ -150,8 +151,8 @@ levels = {
         (600, 400, 200, 20), (200, 300, 100, 20), (700, 150, 20, 350), (400, 500, 200, 20),
         (100, 400, 200, 20), (200, 200, 20, 100), (400, 300, 200, 20), (600, 200, 20, 100),
     },
-    14:{
-        # Level 6 (Final Level)
+    21:{
+        # Level 14
         (50, 100, 800, 20), (100, 100, 20, 400), (700, 50, 20, 500), (400, 0, 20, 250),
         (300, 300, 200, 20), (500, 200, 100, 20), (600, 300, 20, 200), (300, 400, 100, 20),
         (200, 200, 20, 100), (0, 500, 300, 20), (400, 400, 20, 100),
@@ -225,11 +226,11 @@ levels = {
         (790, 0, 10, 600),         # Right wall
 
         # Horizontal walls
-        (20, 60, 100, 20),         # Top horizontal
-        (20, 120, 200, 20),        # 2nd horizontal
-        (20, 180, 300, 20),        # 3rd horizontal
+        (60, 60, 80, 20),         # Top horizontal
+        (260, 120, 40, 20),        # 5th horizontal
+        (60, 240, 200, 20),        # 3rd horizontal
         (200, 240, 300, 20),        # 4th horizontal
-        (400, 300, 200, 20),        # 5th horizontal
+        (400, 300, 300, 20),        # 5th horizontal
         (200, 360, 400, 20),        # 6th horizontal
         (100, 420, 100, 20),        # 7th horizontal
         (0, 480, 300, 20),        # 8th horizontal
@@ -237,10 +238,10 @@ levels = {
 
         # Vertical walls
         (60, 40, 20, 200),         # 1st vertical
-        (120, 0, 20, 200),        # 2nd vertical
+        (120, 0, 20, 150),        # 2nd vertical
         (180, 80, 20, 200),        # 3rd vertical
         (240, 00, 20, 200),        # 4th vertical
-        (300, 40, 20, 200),        # 5th vertical
+        (300, 40, 20, 120),        # 5th vertical
         (360, 80, 20, 200),        # 6th vertical
         (420, 0, 20, 200),        # Center vertical
         (480, 80, 20, 200),        # 8th vertical
@@ -252,14 +253,15 @@ levels = {
     },
     141:{
         (0, 0, 800, 10), (0, 590, 800, 10), (0, 0, 10, 600), (790, 0, 10, 600), (43, 39, 219, 10), (292, 39, 219, 10), 
-        (541, 39, 206, 10), (86, 78, 89, 10), (212, 78, 481, 10), (732, 78, -28, 10), (129, 117, 23, 10), (190, 117, 148, 10), 
+        (541, 39, 206, 10), (86, 78, 89, 10), (212, 78, 481, 10),               (710, 78, 40, 10), (129, 117, 23, 10), (190, 117, 148, 10), 
         (373, 117, 288, 10), (172, 156, 144, 10), (353, 156, 51, 10), (440, 156, 178, 10), (215, 195, 318, 10), (565, 195, 10, 10), 
-        (258, 234, 249, 10), (547, 234, -15, 10), (301, 273, 163, 10), (503, 273, -14, 10), (43, 551, 219, 10), (292, 551, 219, 10), 
-        (541, 551, 206, 10), (86, 512, 183, 10), (307, 512, 150, 10), (495, 512, 209, 10), (129, 473, 153, 10), (319, 473, 316, 10), 
-        (668, 473, -7, 10), (172, 434, 86, 10), (295, 434, 295, 10), (621, 434, -3, 10), (215, 395, 297, 10), (544, 395, 31, 10), 
+        (258, 234, 249, 10), (301, 273, 163, 10),          (498, 273, 40, 10), (43, 548, 219, 10), (292, 548, 219, 10), 
+        (541, 548, 206, 10), (86, 512, 183, 10), (307, 512, 150, 10), (495, 512, 209, 10), (129, 473, 153, 10), (319, 473, 316, 10), 
+        (668, 473, 40, 10), (172, 434, 86, 10), (295, 434, 295, 10), (215, 395, 297, 10), (544, 395, 31, 10), 
         (258, 356, 156, 10), (444, 356, 88, 10), (301, 317, 128, 10), (464, 317, 25, 10), (43, 39, 10, 512), (747, 39, 10, 522), 
         (86, 78, 10, 434), (704, 78, 10, 444), (129, 117, 10, 356), (661, 117, 10, 366), (172, 156, 10, 278), (618, 156, 10, 288), 
-        (215, 195, 10, 200), (575, 195, 10, 210), (258, 234, 10, 122), (532, 234, 10, 132), (301, 273, 10, 44), (489, 273, 10, 54)
+        (215, 195, 10, 200), (575, 195, 10, 210), (258, 234, 10, 122), (532, 234, 10, 132), (301, 273, 10, 44), (489, 273, 10, 54),
+        (200, 551, 10, 40), (720, 10, 10, 35)
     },
     1414:{
 
@@ -273,23 +275,28 @@ levels = {
 
         # Horizontal walls
         (70, 80, 660, 20),         # Top horizontal
-        (150, 160, 500, 20),        # 2nd horizontal
-        (230, 240, 340, 20),        # 3rd horizontal
+        (150, 160, 230, 20),        # 2nd horizontal
+        (150, 270, 230, 20),
+        (230, 240, 150, 20),        # 3rd horizontal
+        (230, 190, 150, 20),
         #(310, 320, 180, 20),        # 4th horizontal
         (230, 340, 340, 20),        # 5th horizontal
         (150, 420, 500, 20),        # 5th horizontal
+        (150, 420, 500, 20),
         (70, 500, 660, 20),        # Bottom horizontal
 
         # Vertical walls
         (70, 80, 20, 190),         # Left vertical
         (70, 330, 20, 190),
-        (150, 160, 20, 280),        # 2nd vertical
+        (150, 160, 20, 120),        # 2nd vertical
+        (150, 320, 20, 120),
         (230, 240, 20, 120),        # 3rd vertical
         #(310, 80, 20, 440),        # 4th vertical
         #(390, 80, 20, 460),        # Center vertical
         #(470, 80, 20, 440),        # 6th vertical
         (550, 240, 20, 120),        # 7th vertical
-        (630, 160, 20, 280),        # 8th vertical
+        (630, 160, 20, 120),        # 8th vertical
+        (630, 320, 20, 120),
         (710, 80, 20, 180),        # Right vertical
         (710, 340, 20, 180), 
     },

@@ -16,6 +16,7 @@ pygame.display.set_caption("Maze Runner")
 # Player settings
 player_size = 20
 player_speed = 5
+player_power = []
 
 #Enemy settings
 enemy_speed = 8
@@ -147,8 +148,10 @@ def draw_game():
     # Draw timer and score
     font = pygame.font.SysFont(None, 36)
     #timer_text = font.render(f"Time: {int(timer)}", True, BLACK)
+    level_text = font.render(f"Level: {current_level}", True, C.BLACK)
     score_text = font.render(f"Score: {score}", True, C.BLACK)
     #screen.blit(timer_text, (10, 10))
+    screen.blit(level_text, (10, 10))
     screen.blit(score_text, (10, 50))
 
 def update_explored():
@@ -215,14 +218,20 @@ while running:
         goal_rect = pygame.Rect(goal["pos"][0], goal["pos"][1], goal["size"], goal["size"])
 
         if new_rect.colliderect(goal_rect):
-            print(f"Player reached {goal_name}! Moving to level {goal['sendtolevel']}.")
-            score += 100
-            if goal["sendtolevel"] in Level.levels:
-                current_level = goal["sendtolevel"]
-            else:
-                current_level = 55 #the ghost level
-            start_position = goal["sendtopos"]
-            reset_level()
+            #print(f"Player reached {goal_name}! Moving to level {goal['sendtolevel']}.")
+            #score += 100
+            #Add power or attribute to player
+            if "addpower" in goal:
+                if not goal["addpower"] in player_power:
+                    player_power.append(goal["addpower"])
+            #Move if send to pos defined in goal
+            if "sendtolevel" in goal:
+                if goal["sendtolevel"] in Level.levels:
+                    current_level = goal["sendtolevel"]
+                else:
+                    current_level = 55 #the ghost level
+                start_position = goal["sendtopos"]
+                reset_level()
 
     # Check for reaching the goal in the bottom right (OLD)
     # goal_rect = pygame.Rect(WIDTH - 50, HEIGHT - 50, goal_size, goal_size)
@@ -309,12 +318,18 @@ while running:
 
         # Player collision
         if new_rect.colliderect(enemy_rect):
-            print("Enemy collision. Reset")
-            #running = False
-            score -= 50
-            current_level = 0
-            start_position = [390, 290]
-            reset_level()
+            if not "extralife" in player_power:
+                print("Enemy collision. Reset")
+                #running = False
+                score -= 50
+                current_level = 0
+                start_position = [390, 290]
+                reset_level()
+            else:
+                #Extra life saves you and get rid of that enemy
+                print("Enemy collision. Saved")
+                player_power.remove("extralife")
+                enemies.remove(enemy)
 
 
     # Draw game
