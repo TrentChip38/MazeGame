@@ -18,6 +18,8 @@ player_size = 20
 player_speed = 5
 player_power = []
 
+#powerup settings
+speed_boost1_attained = False
 #Enemy settings
 enemy_speed = 8
 default_enemy_amount = 4
@@ -58,6 +60,12 @@ start_position = [390, 290]
 
 # Tracking explored positions (2D array)
 explored = [[False for _ in range(WIDTH // 40)] for _ in range(HEIGHT // 40)]
+
+def update_speed():
+    pass
+
+
+
 
 def reset_level():
     global player_pos, coins, enemies, timer, explored
@@ -181,6 +189,12 @@ while running:
     # if timer <= 0:
     #     print("Time's up! Game Over!")
     #     running = False
+
+    #updating speed
+    if "speedboost1" in player_power and speed_boost1_attained == False:
+        player_speed += 1
+        speed_boost1_attained = True
+
 
     # Player movement
     keys = pygame.key.get_pressed()

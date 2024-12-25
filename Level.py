@@ -1,3 +1,17 @@
+
+
+starter_shop = {
+
+
+
+
+}
+
+
+
+
+
+
 # Screen dimensions
 WIDTH, HEIGHT = 800, 600
 mid_top_goal = [WIDTH//2 -20, -20]
@@ -33,12 +47,15 @@ start_positions = {0:[390, 290], 1:[390, 560], 2:[20, 280]}
 import Colors as C
 levels_color = {0: C.GREEN, 1:(140, 100, 100), 2:C.GREY, 3: C.GREY, 4: C.GREY, 42: C.GREY, 44: C.GREY, 14: C.GREY, 12: C.GREY, 55: C.GREY, 56: C.GREY, 57: C.GREY}
 levels_enemies = {0: 0, 141: 10}
+
 level_goals = {
     0: {
         "goalN": {"pos": mid_top_goal, "sendtolevel": 1, "sendtopos": bottom_start, "color": C.GREEN, "size": default_goal_size},
         "goalE": {"pos": mid_right_goal, "sendtolevel": 2, "sendtopos": left_start, "color": C.GREEN, "size": default_goal_size},
         "goalS": {"pos": mid_bottom_goal, "sendtolevel": 3, "sendtopos": top_start, "color": C.GREEN, "size": default_goal_size},
         "goalW": {"pos": mid_left_goal, "sendtolevel": 4, "sendtopos": right_start, "color": C.GREEN, "size": default_goal_size},
+        "shop_1": {"pos": [50, 50], "addpower": "extralife", "color": C.YELLOW, "size": 20},
+        "shop_2": {"pos": [50, 80], "addpower": "speedboost1", "color": C.BLUE, "size": 20},
     },
     1: {
         "goalN": {"pos": mid_top_goal, "sendtolevel": 11, "sendtopos": bottom_start, "color": C.GREY, "size": bigger_goal_size},
