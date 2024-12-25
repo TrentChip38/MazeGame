@@ -19,7 +19,7 @@ player_speed = 5
 
 #Power ups
 player_power = []
-extra_lives = ["extralife", "extralife2"]
+extra_lives = ["extralife", "extralife1", "extralife2", "extralife3", "extralife4"]
 
 #powerup settings
 speed_boost1_attained = False
@@ -240,7 +240,12 @@ while running:
             #Add power or attribute to player
             if "addpower" in goal:
                 if not goal["addpower"] in player_power:
-                    player_power.append(goal["addpower"])
+                    if "cost" in goal:
+                        if score >= goal["cost"]:
+                            player_power.append(goal["addpower"])
+                            score -= goal["cost"]
+                    else:
+                        player_power.append(goal["addpower"])
             #Move if send to pos defined in goal
             if "sendtolevel" in goal:
                 if goal["sendtolevel"] in Level.levels:
@@ -349,7 +354,8 @@ while running:
                         #Extra life saves you and get rid of that enemy
                         print("Enemy collision. Saved")
                         player_power.remove(extra_life)
-                        enemies.remove(enemy)
+                        if enemy in enemies:
+                            enemies.remove(enemy)
                         print("Enemy collision. Reset")
             
                 

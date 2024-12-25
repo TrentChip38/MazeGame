@@ -54,8 +54,8 @@ level_goals = {
         "goalE": {"pos": mid_right_goal, "sendtolevel": 2, "sendtopos": left_start, "color": C.GREEN, "size": default_goal_size},
         "goalS": {"pos": mid_bottom_goal, "sendtolevel": 3, "sendtopos": top_start, "color": C.GREEN, "size": default_goal_size},
         "goalW": {"pos": mid_left_goal, "sendtolevel": 4, "sendtopos": right_start, "color": C.GREEN, "size": default_goal_size},
-        "shop_1": {"pos": [50, 50], "addpower": "extralife", "color": C.YELLOW, "size": 20},
-        "shop_2": {"pos": [50, 80], "addpower": "speedboost1", "color": C.BLUE, "size": 20},
+        "shop_1": {"pos": [50, 50], "addpower": "extralife1", "cost": 100,"color": C.YELLOW, "size": 20},
+        "shop_2": {"pos": [50, 80], "addpower": "speedboost1", "cost": 100, "color": C.BLUE, "size": 20},
     },
     1: {
         "goalN": {"pos": mid_top_goal, "sendtolevel": 11, "sendtopos": bottom_start, "color": C.GREY, "size": bigger_goal_size},
