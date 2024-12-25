@@ -15,7 +15,14 @@ pygame.display.set_caption("Maze Runner")
 
 # Player settings
 player_size = 20
-player_speed = 5
+default_player_speed = 5
+player_speed = default_player_speed
+
+speed_boost_toggle = 0
+dev_cost_divider = 1
+# Timer and Score
+timer = 60  # 60 seconds per level (unused)
+score = 0
 
 #Power ups
 player_power = []
@@ -28,7 +35,7 @@ enemy_speed = 8
 default_enemy_amount = 4
 
 # Visibility settings
-Darkness_on = False
+Darkness_on = True
 vis_radius = 2
 vis_y_left = vis_radius - 1
 vis_y_right = vis_radius + 1
@@ -46,10 +53,6 @@ coin_count = 5
 
 # Enemy settings
 enemy_size = 20
-
-# Timer and Score
-timer = 60  # 60 seconds per level (unused)
-score = 0
 
 # Clock for controlling frame rate
 clock = pygame.time.Clock()
@@ -193,12 +196,6 @@ while running:
     #     print("Time's up! Game Over!")
     #     running = False
 
-    #updating speed
-    if "speedboost1" in player_power and speed_boost1_attained == False:
-        player_speed += 1
-        speed_boost1_attained = True
-
-
     # Player movement
     keys = pygame.key.get_pressed()
     dx, dy = 0, 0
@@ -218,6 +215,19 @@ while running:
           dy += player_speed
     elif keys[pygame.K_s]:
             dy += player_speed
+    #Power up toggling
+    if "speedboost10" in player_power:
+        if keys[pygame.K_m] or keys[pygame.K_SPACE]:
+            if speed_boost_toggle:
+                speed_boost_toggle = 0
+                player_speed = default_player_speed
+            else:
+                speed_boost_toggle = 1
+                player_speed = 10
+    #updating speed
+        if "speedboost1" in player_power and speed_boost1_attained == False:
+            player_speed += 1
+            speed_boost1_attained = True
 
     # Move player with collision detection
     new_pos = [player_pos[0] + dx, player_pos[1] + dy]
@@ -241,7 +251,7 @@ while running:
             if "addpower" in goal:
                 if not goal["addpower"] in player_power:
                     if "cost" in goal:
-                        if score >= goal["cost"]:
+                        if score >= goal["cost"]//dev_cost_divider:
                             player_power.append(goal["addpower"])
                             score -= goal["cost"]
                     else:
@@ -357,6 +367,7 @@ while running:
                         if enemy in enemies:
                             enemies.remove(enemy)
                         print("Enemy collision. Reset")
+                        break
             
                 
 

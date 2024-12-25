@@ -54,8 +54,9 @@ level_goals = {
         "goalE": {"pos": mid_right_goal, "sendtolevel": 2, "sendtopos": left_start, "color": C.GREEN, "size": default_goal_size},
         "goalS": {"pos": mid_bottom_goal, "sendtolevel": 3, "sendtopos": top_start, "color": C.GREEN, "size": default_goal_size},
         "goalW": {"pos": mid_left_goal, "sendtolevel": 4, "sendtopos": right_start, "color": C.GREEN, "size": default_goal_size},
-        "shop_1": {"pos": [50, 50], "addpower": "extralife1", "cost": 100,"color": C.YELLOW, "size": 20},
-        "shop_2": {"pos": [50, 80], "addpower": "speedboost1", "cost": 100, "color": C.BLUE, "size": 20},
+        "shop_1": {"pos": [50, 60], "addpower": "extralife1", "cost": 100,"color": C.YELLOW, "size": 20},
+        "shop_2": {"pos": [50, 100], "addpower": "speedboost1", "cost": 100, "color": C.BLUE, "size": 20},
+        "shop_3": {"pos": [50, 140], "addpower": "speedboost10", "cost": 2000, "color": C.CYAN, "size": 20},
     },
     1: {
         "goalN": {"pos": mid_top_goal, "sendtolevel": 11, "sendtopos": bottom_start, "color": C.GREY, "size": bigger_goal_size},
@@ -105,6 +106,10 @@ level_goals = {
     1414: {
         "goalS": {"pos": mid_bottom_goal, "sendtolevel": 0, "sendtopos": corner_start, "color": C.GREEN, "size": default_goal_size},
         "goalW": {"pos": mid_right_goal, "sendtolevel": 141, "sendtopos": [20, 290], "color": C.GREY, "size": default_goal_size},
+    },
+    21:{
+        "goalN": {"pos": mid_top_goal, "sendtolevel": 0, "sendtopos": bottom_start, "color": C.GREEN, "size": default_goal_size},
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 2, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
     },
     55: {
         "goalN": {"pos": mid_top_goal, "sendtolevel": 1, "sendtopos": bottom_start, "color": C.GREY, "size": default_goal_size},
@@ -286,7 +291,7 @@ levels = {
         (200, 551, 10, 40), (720, 10, 10, 35)
     },
     1414:{
-
+        (0, 0, 800, 20), (0, 580, 800, 20), (0, 0, 20, 600), (780, 0, 20, 600),# Outer walls
     },
     55:{
         # Outer walls
