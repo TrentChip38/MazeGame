@@ -1,7 +1,7 @@
 import pygame
 import sys
 import time
-
+import maze_layout
 # if event.type == pygame.MOUSEBUTTONDOWN:
 #     print(f"Click registered at {event.pos}")
 #     time.sleep(0.2)  # Pause for 200 milliseconds
@@ -34,6 +34,7 @@ walls = [
         (380, 0, 40, 20),(780, 280, 20, 40), (380, 580, 40, 20),(0, 280, 20, 40),
 ]
 walls1 = []# Can use this with premade stuff
+#walls = maze_layout.walls #use this if you want to use previouse layout still in the file
 dragging = False
 resizing = False
 current_rect = None
@@ -60,13 +61,24 @@ def snap_to_grid(value, grid_size):
     """Snaps a value to the nearest grid position."""
     return round(value / grid_size) * grid_size
 
+def normalize_rect(rect):
+    x, y, width, height = rect
+    if width < 0:
+        x += width  # Shift x to the left
+        width = abs(width)  # Make width positive
+    if height < 0:
+        y += height  # Shift y upward
+        height = abs(height)  # Make height positive
+    rect = (x, y, width, height)
+    return rect
+
 def save_maze(filename="maze_layout.py"):
     """Saves the maze layout to a Python file."""
     with open(filename, "w") as file:
         file.write("walls = [\n")
         num = 0
         for rect in walls:
-            if not any(items < 0 for items in rect):
+            if True:#not any(items < 0 for items in rect):
                 file.write(f"({rect[0]}, {rect[1]}, {rect[2]}, {rect[3]}),")
                 num += 1
                 if num == 6:
@@ -113,7 +125,8 @@ while running:
                 snap_to_grid(mouse_pos[1], GRID_SIZE),
             )
             drawing_rect = (start_pos[0], start_pos[1], end_pos[0] - start_pos[0], end_pos[1] - start_pos[1])
-            print(drawing_rect)
+            drawing_rect = normalize_rect(drawing_rect)
+            #print(drawing_rect)
             pygame.draw.rect(screen, BLUE, drawing_rect, 2)
             #pygame.display.flip()
 
@@ -131,24 +144,26 @@ while running:
         # Start creating a rectangle
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and waiting:
             mouse_pos = pygame.mouse.get_pos()
-            print("Mouse: ", mouse_pos)
+            #print("Mouse: ", mouse_pos)
             start_pos = (
                 snap_to_grid(mouse_pos[0], GRID_SIZE),
                 snap_to_grid(mouse_pos[1], GRID_SIZE),
             )
-            print("StartPos: ", start_pos)
+            #print("StartPos: ", start_pos)
             waiting = False
             dragging = True
         # End rectangle
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 1 and dragging:
             mouse_pos = pygame.mouse.get_pos()
-            print("Mouse: ", mouse_pos)
+            #print("Mouse: ", mouse_pos)
             end_pos = (
                 snap_to_grid(mouse_pos[0], GRID_SIZE),
                 snap_to_grid(mouse_pos[1], GRID_SIZE),
             )
-            print("EndPos: ", start_pos)
+            #print("EndPos: ", start_pos)
             current_rect = (start_pos[0], start_pos[1], end_pos[0] - start_pos[0], end_pos[1] - start_pos[1])
+            print(current_rect)
+            current_rect = normalize_rect(current_rect)
             print(current_rect)
             walls.append(current_rect)
             waiting = True
