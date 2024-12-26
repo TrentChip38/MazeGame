@@ -22,7 +22,7 @@ BLUE = (0, 0, 255)
 RED = (255, 0, 0)
 
 # Grid size
-GRID_SIZE = 20
+GRID_SIZE = 10
 # # Outer walls
 #     (0, 0, 380, 20), (420, 0, 380, 20), (780, 0, 20, 280), (780, 320, 20, 280),
 #         (0, 580, 380, 20), (420, 580, 380, 20), (0, 0, 20, 280), (0, 320, 20, 280),
@@ -34,7 +34,7 @@ walls = [
         (380, 0, 40, 20),(780, 280, 20, 40), (380, 580, 40, 20),(0, 280, 20, 40),
 ]
 walls1 = []# Can use this with premade stuff
-#walls = maze_layout.walls #use this if you want to use previouse layout still in the file
+walls = maze_layout.walls #use this if you want to use previouse layout still in the file
 dragging = False
 resizing = False
 current_rect = None

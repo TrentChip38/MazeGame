@@ -15,14 +15,14 @@ pygame.display.set_caption("Maze Runner")
 
 # Player settings
 player_size = 20
-default_player_speed = 12#5
+default_player_speed = 5
 player_speed = default_player_speed
 
 speed_boost_toggle = 1#0
 dev_cost_divider = 1
 # Timer and Score
 timer = 60  # 60 seconds per level (unused)
-score = 20000#0
+score = 0
 
 #Power ups
 player_power = []
@@ -35,7 +35,7 @@ enemy_speed = 8
 default_enemy_amount = 4
 
 # Visibility settings
-Darkness_on = False#True
+Darkness_on = True
 vis_radius = 2
 vis_y_left = vis_radius - 1
 vis_y_right = vis_radius + 1
