@@ -13,12 +13,15 @@ HEIGHT = Level.HEIGHT
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Maze Runner")
 
+#Money for power ups
+dev_mode_cheats = False
+
 # Player settings
 player_size = 20
 default_player_speed = 5
 player_speed = default_player_speed
 
-speed_boost_toggle = 1#0
+speed_boost_toggle = 0
 dev_cost_divider = 1
 # Timer and Score
 timer = 60  # 60 seconds per level (unused)
@@ -64,6 +67,13 @@ enemies = []
 global start_position
 start_position = [390, 290]
 
+if dev_mode_cheats:
+    Darkness_on = False
+    vis_radius = 6
+    score = 4000
+    current_level = 34
+    start_position = [760, 290]#Custom start
+
 # Tracking explored positions (2D array)
 explored = [[False for _ in range(WIDTH // 40)] for _ in range(HEIGHT // 40)]
 
@@ -81,7 +91,8 @@ def reset_level():
     #print(start_position)
     coins.clear()
     enemies.clear()
-
+    #Add map if level mostly explored?
+    
     # Reset explored areas for the new level
     explored = [[False for _ in range(WIDTH // 40)] for _ in range(HEIGHT // 40)]
 
