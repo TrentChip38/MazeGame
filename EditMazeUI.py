@@ -123,26 +123,29 @@ def add_to_dict(file_path, array_name, key):
         if array_name in line:
             in_dict = True
         # Find the line starting the target key
-        if in_dict and ":" in line and str(level_num) in line:
+        if in_dict and ":" in line and line.split()[0].split(":")[0] == str(level_num):
+            print("Got to target array")
+            #Don't print anything in the current target key
             in_key = True
             # Insert the new key and array in this spot
-            updated_lines.append(str(level_num) + ":{\n     \n")
+            updated_lines.append("  " + str(level_num) + ":{\n       ")
             num = 0
             for rect in walls:
-                updated_lines.append(f"   ({rect[0]}, {rect[1]}, {rect[2]}, {rect[3]}),")
+                updated_lines.append(f"({rect[0]}, {rect[1]}, {rect[2]}, {rect[3]}),")
                 num += 1
                 if num == 6:
-                    updated_lines.append(f"\n")
+                    updated_lines.append(f"\n       ")
                     num = 0
-            updated_lines.append("\n" + "},\n")
-        #Watch for bracket that ends target key
-        if in_key and "}" in line:
-            in_key = False
+            updated_lines.append("\n" + "   },\n")
         if not in_key:
             #Add all original lines except those in the current target key
             updated_lines.append(line)
-    with open("NewLevelFile.py", "w") as file:
-        file.writelines(updated_lines)
+        #Watch for bracket that ends target key
+        if in_key and "}" in line:
+            in_key = False
+
+    # with open("NewLevelFile.py", "w") as file:
+    #     file.writelines(updated_lines)
 
     # Write the updated content back to the file
     with open(file_path, 'w') as file:
@@ -235,7 +238,7 @@ while running:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_s:
                 #save_maze_file()
-                add_to_dict("Level.py", "levels", level_num)
+                add_to_dict("Level.py", "levels = {", level_num)
             elif event.key == pygame.K_ESCAPE:
                 running = False
 
