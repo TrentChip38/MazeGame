@@ -76,6 +76,26 @@ def draw_instructions():
         text = font.render(line, True, BLACK)
         screen.blit(text, (10, 10 + i * 20))
 
+def draw_goals(level):
+    """Draws any goals."""
+    for goal in Level.level_goals[level].keys():
+        #print("Drawing goals:")
+        if "sendtolevel" in Level.level_goals[level][goal]:
+            # print(goal)
+            # print(Level.level_goals[level][goal])
+            # print(str(Level.level_goals[level][goal]["sendtolevel"]))
+            text = font.render(str(Level.level_goals[level][goal]["sendtolevel"]), True, BLUE)
+            print_pos = Level.level_goals[level][goal]["pos"]
+            if print_pos[0] < 0:
+                print_pos[0] = 10
+            if print_pos[0] > 760:
+                print_pos[0] = 760
+            if print_pos[1] < 0:
+                print_pos[1] = 3
+            if print_pos[1] > 580:
+                print_pos[1] = 580
+            screen.blit(text, print_pos)
+
 def snap_to_grid(value, grid_size):
     """Snaps a value to the nearest grid position."""
     return round(value / grid_size) * grid_size
@@ -195,6 +215,10 @@ while running:
 
     # Draw instructions
     draw_instructions()
+    if level_num in Level.level_goals.keys():
+        # print("Drew Goals")
+        # print(Level.level_goals[level_num])
+        draw_goals(level_num)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
