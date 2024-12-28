@@ -151,6 +151,7 @@ level_goals = {
     34:{
         #"goalN": {"pos": mid_top_goal, "sendtolevel": 11, "sendtopos": bottom_start, "color": C.GREY, "size": bigger_goal_size},
         "goalE": {"pos": mid_right_goal, "sendtolevel": 3, "sendtopos": left_start, "color": C.GREY, "size": bigger_goal_size},
+        "goalC": {"pos": [750, 370], "sendtolevel": 343, "sendtopos": left_start, "color": C.GREY, "size": 20},
         #"goalS": {"pos": mid_bottom_goal, "sendtolevel": 0, "sendtopos": top_start, "color": C.GREY, "size": bigger_goal_size},
         #"goalW": {"pos": mid_left_goal, "sendtolevel": 14, "sendtopos": right_start, "color": C.GREY, "size": bigger_goal_size},
     },
