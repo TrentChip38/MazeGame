@@ -71,11 +71,11 @@ start_position = [390, 290]
 #Set test mode stuff on
 if dev_mode_cheats:
     Darkness_on = True
-    vis_radius = 6
-    score = 4000
-    current_level = 60
+    #vis_radius = 6
+    score = 10000
+    #current_level = 0
     #start_position = [760, 290]#Custom start
-    start_position = [40, 290]
+    #start_position = [40, 290]
 
 # Tracking explored positions (2D array)
 explored = [[False for _ in range(WIDTH // 40)] for _ in range(HEIGHT // 40)]
@@ -245,9 +245,16 @@ while running:
     if "speedboost1" in player_power and speed_boost1_attained == False:
         player_speed += 1
         speed_boost1_attained = True
+    vis_radius = 2
     #vision
     if "vision4" in player_power:
-        vis_radius = 4
+        vis_radius += 2
+    if "vision6" in player_power:
+        vis_radius += 2
+    vis_y_left = vis_radius - 1
+    vis_y_right = vis_radius + 1
+    vis_x_left = vis_y_left
+    vis_x_right = vis_y_right
 
     # Move player with collision detection
     new_pos = [player_pos[0] + dx, player_pos[1] + dy]
