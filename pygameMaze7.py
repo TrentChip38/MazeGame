@@ -14,7 +14,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Maze Runner")
 
 #Money for power ups
-dev_mode_cheats = False
+dev_mode_cheats = True
 
 # Player settings
 player_size = 20
@@ -53,6 +53,7 @@ goal_size = 30
 # Coin settings
 coin_size = 15
 coin_count = 5
+default_coin_count = 5
 
 # Enemy settings
 enemy_size = 20
@@ -67,12 +68,14 @@ enemies = []
 global start_position
 start_position = [390, 290]
 
+#Set test mode stuff on
 if dev_mode_cheats:
-    Darkness_on = False
+    Darkness_on = True
     vis_radius = 6
     score = 4000
-    current_level = 34
-    start_position = [760, 290]#Custom start
+    current_level = 60
+    #start_position = [760, 290]#Custom start
+    start_position = [40, 290]
 
 # Tracking explored positions (2D array)
 explored = [[False for _ in range(WIDTH // 40)] for _ in range(HEIGHT // 40)]
@@ -97,6 +100,9 @@ def reset_level():
     explored = [[False for _ in range(WIDTH // 40)] for _ in range(HEIGHT // 40)]
 
     # Generate coins
+    coin_count = default_coin_count
+    if current_level in Level.levels_coins:
+        coin_count = Level.levels_coins[current_level]
     for _ in range(coin_count):
         while True:
             coin = [random.randint(50, WIDTH - 50), random.randint(50, HEIGHT - 50)]

@@ -148,7 +148,7 @@ def add_to_dict(file_path, array_name, key):
             #Don't print anything in the current target key
             in_key = True
             # Insert the new key and array in this spot
-            updated_lines.append("      " + str(level_num) + ":{\n        ")
+            updated_lines.append("    " + str(level_num) + ":{\n        ")
             num = 0
             for rect in walls:
                 updated_lines.append(f"({rect[0]}, {rect[1]}, {rect[2]}, {rect[3]}),")

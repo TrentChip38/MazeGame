@@ -22,8 +22,8 @@ default_goal_size = 40
 
 corner_start = [50, 50]
 top_start = [390, 30]
-bottom_start = [390, 550]
-right_start = [750, 290]
+bottom_start = [390, 560]
+right_start = [760, 290]
 left_start = [30, 290]
 
 # Player starting positions
@@ -32,7 +32,8 @@ start_positions = {0:[390, 290], 1:[390, 560], 2:[20, 280]}
 # Levels and Walls
 import Colors as C
 levels_color = {0: C.GREEN, 1:(140, 100, 100), 2:C.GREY, 3: C.GREY, 4: C.GREY, 42: C.GREY, 44: C.GREY, 14: C.GREY, 12: C.GREY, 55: C.GREY, 56: C.GREY, 57: C.GREY}
-levels_enemies = {0: 0, 141: 10, 1414: 8}
+levels_enemies = {0: 0, 141: 10, 1414: 8, 60: 10}
+levels_coins = {0: 3, 60: 60}
 
 level_goals = {
     0: {
@@ -40,11 +41,11 @@ level_goals = {
         "goalE": {"pos": mid_right_goal, "sendtolevel": 2, "sendtopos": left_start, "color": C.GREEN, "size": default_goal_size},
         "goalS": {"pos": mid_bottom_goal, "sendtolevel": 3, "sendtopos": top_start, "color": C.GREEN, "size": default_goal_size},
         "goalW": {"pos": mid_left_goal, "sendtolevel": 4, "sendtopos": right_start, "color": C.GREEN, "size": default_goal_size},
-        "shop_1": {"pos": [50, 60], "addpower": "extralife1", "cost": 100,"color": C.YELLOW, "size": 20},
+        "shop_1": {"pos": [50, 60], "addpower": "extralife2", "cost": 100,"color": C.YELLOW, "size": 20},
         "shop_2": {"pos": [50, 100], "addpower": "speedboost1", "cost": 100, "color": C.BLUE, "size": 20},
         "shop_3": {"pos": [50, 140], "addpower": "speedboost10", "cost": 2000, "color": C.CYAN, "size": 20},
-        "shop_4": {"pos": [50, 180], "addpower": "vision4", "cost": 500, "color": C.BROWN, "size": 20},
-        #"shop_5": {"pos": [50, 220], "addpower": "vision8", "cost": 2000, "color": C.CYAN, "size": 20},
+        "shop_4": {"pos": [50, 180], "addpower": "vision4", "cost": 400, "color": C.BROWN, "size": 20},
+        "shop_5": {"pos": [50, 220], "addpower": "vision8", "cost": 2000, "color": C.BROWN_DARK, "size": 20},
     },
     1: {
         "goalN": {"pos": mid_top_goal, "sendtolevel": 11, "sendtopos": bottom_start, "color": C.GREY, "size": bigger_goal_size},
@@ -75,7 +76,7 @@ level_goals = {
         "goalN": {"pos": mid_top_goal, "sendtolevel": 141, "sendtopos": [390, 560], "color": C.GREY, "size": default_goal_size},
         "goalS": {"pos": mid_bottom_goal, "sendtolevel": 56, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
         "goalW": {"pos": mid_left_goal, "sendtolevel": 55, "sendtopos": right_start, "color": C.GREY, "size": default_goal_size},
-        "goalP": {"pos": [90, 100], "addpower": "extralife", "color": C.YELLOW, "size": 20},
+        "goalP": {"pos": [90, 100], "addpower": "extralife1", "color": C.YELLOW, "size": 20},
     },
     12: {
         "goalN": {"pos": mid_top_goal, "sendtolevel": 56, "sendtopos": bottom_start, "color": C.GREY, "size": default_goal_size},
@@ -94,7 +95,7 @@ level_goals = {
     1414: {
         "goalS": {"pos": mid_bottom_goal, "sendtolevel": 0, "sendtopos": corner_start, "color": C.GREEN, "size": default_goal_size},
         "goalW": {"pos": mid_right_goal, "sendtolevel": 141, "sendtopos": [20, 290], "color": C.GREY, "size": default_goal_size},
-        "shop_3": {"pos": [250, 400], "addpower": "speedboost10", "cost": 200, "color": C.CYAN, "size": 20},
+        "shop_3": {"pos": [250, 400], "addpower": "speedboost10", "color": C.CYAN, "size": 20},
     },
     21:{
         "goalN": {"pos": mid_top_goal, "sendtolevel": 0, "sendtopos": bottom_start, "color": C.GREEN, "size": default_goal_size},
@@ -117,6 +118,7 @@ level_goals = {
         #"goalE": {"pos": mid_right_goal, "sendtolevel": 2222, "sendtopos": left_start, "color": C.GREY, "size": bigger_goal_size},
         #"goalS": {"pos": mid_bottom_goal, "sendtolevel": 2223, "sendtopos": top_start, "color": C.GREEN, "size": bigger_goal_size},
         "goalW": {"pos": mid_left_goal, "sendtolevel": 22, "sendtopos": right_start, "color": C.GREY, "size": bigger_goal_size},
+        "goalC": {"pos": [290, 140], "sendtolevel": 60, "sendtopos": left_start, "color": C.ORANGE, "size": 20},
     },
     223:{
         "goalN": {"pos": mid_top_goal, "sendtolevel": 22, "sendtopos": bottom_start, "color": C.GREY, "size": bigger_goal_size},
@@ -151,7 +153,7 @@ level_goals = {
     34:{
         #"goalN": {"pos": mid_top_goal, "sendtolevel": 11, "sendtopos": bottom_start, "color": C.GREY, "size": bigger_goal_size},
         "goalE": {"pos": mid_right_goal, "sendtolevel": 3, "sendtopos": left_start, "color": C.GREY, "size": bigger_goal_size},
-        "goalC": {"pos": [750, 370], "sendtolevel": 343, "sendtopos": left_start, "color": C.GREY, "size": 20},
+        "goalC": {"pos": [750, 370], "sendtolevel": 60, "sendtopos": left_start, "color": C.ORANGE, "size": 20},
         #"goalS": {"pos": mid_bottom_goal, "sendtolevel": 0, "sendtopos": top_start, "color": C.GREY, "size": bigger_goal_size},
         #"goalW": {"pos": mid_left_goal, "sendtolevel": 14, "sendtopos": right_start, "color": C.GREY, "size": bigger_goal_size},
     },
@@ -160,14 +162,14 @@ level_goals = {
         "goalE": {"pos": mid_right_goal, "sendtolevel": 0, "sendtopos": left_start, "color": C.GREEN, "size": default_goal_size},
         #"goalS": {"pos": mid_bottom_goal, "sendtolevel": 3, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
         "goalW": {"pos": mid_left_goal, "sendtolevel": 223, "sendtopos": right_start, "color": C.GREY, "size": default_goal_size},
-        "goalP": {"pos": [360, 290], "addpower": "extralife2", "color": C.YELLOW, "size": 20},
+        "goalP": {"pos": [360, 290], "addpower": "extralife", "color": C.YELLOW, "size": 20},
     },
     55: {
         "goalN": {"pos": mid_top_goal, "sendtolevel": 1, "sendtopos": bottom_start, "color": C.GREY, "size": default_goal_size},
         "goalE": {"pos": mid_right_goal, "sendtolevel": 2, "sendtopos": left_start, "color": C.GREY, "size": default_goal_size},
         "goalS": {"pos": mid_bottom_goal, "sendtolevel": 3, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
         "goalW": {"pos": mid_left_goal, "sendtolevel": 4, "sendtopos": right_start, "color": C.GREY, "size": default_goal_size},
-        "goalP": {"pos": [360, 290], "addpower": "extralife2", "color": C.YELLOW, "size": 20},
+        "goalP": {"pos": [360, 290], "addpower": "extralife", "color": C.YELLOW, "size": 20},
     },
     56: {
         "goalN": {"pos": mid_top_goal, "sendtolevel": 1, "sendtopos": bottom_start, "color": C.GREY, "size": default_goal_size},
@@ -180,6 +182,9 @@ level_goals = {
         "goalE": {"pos": mid_right_goal_thin, "sendtolevel": 2, "sendtopos": left_start, "color": C.GREY, "size": 20},
         "goalS": {"pos": mid_bottom_goal_thin, "sendtolevel": 3, "sendtopos": top_start, "color": C.GREY, "size": 20},
         "goalW": {"pos": mid_left_goal_thin, "sendtolevel": 4, "sendtopos": right_start, "color": C.GREY, "size": 20},
+    },
+    60:{
+        "goalE": {"pos": mid_right_goal, "sendtolevel": 0, "sendtopos": left_start, "color": C.GREEN, "size": default_goal_size},
     },
 }
 
@@ -383,8 +388,8 @@ levels = {
         (215, 195, 10, 200), (575, 195, 10, 210), (258, 234, 10, 122), (532, 234, 10, 132), (301, 273, 10, 44), (489, 273, 10, 54),
         (200, 551, 10, 40), (720, 10, 10, 35), (120, 512, 10, 40), (86, 300, 40, 10),
     },
-      1414:{
-       (780, 0, 20, 600),(20, 100, 20, 20),(120, 20, 20, 20),(360, 20, 20, 20),(760, 100, 20, 20),(260, 80, 0, 0),
+    1414:{
+        (780, 0, 20, 600),(20, 100, 20, 20),(120, 20, 20, 20),(360, 20, 20, 20),(760, 100, 20, 20),(260, 80, 0, 0),
         (0, 0, 20, 600),(380, 0, 40, 20),(340, 480, 40, 40),(420, 20, 20, 20),(760, 260, 20, 20),(540, 440, 60, 60),
         (20, 260, 20, 20),(420, 580, 360, 20),(0, 0, 800, 20),(440, 240, 60, 40),(20, 580, 360, 20),(380, 580, 40, 20),
         (360, 560, 20, 20),(780, 280, 20, 40),(140, 560, 20, 20),(20, 460, 20, 20),(640, 20, 20, 20),(420, 560, 20, 20),
@@ -425,6 +430,14 @@ levels = {
        (307, 512, 150, 10),(319, 473, 316, 10),(258, 356, 156, 10),(292, 551, 219, 10),(172, 434, 86, 10),(215, 195, 318, 10),
        (43, 551, 219, 10),(292, 39, 219, 10),(444, 356, 88, 10),(129, 117, 10, 356),(301, 273, 10, 44),(190, 117, 148, 10),
         },
+    60:{
+        (780, 0, 20, 600),(120, 20, 20, 20),(360, 20, 20, 20),(260, 80, 0, 0),(0, 0, 20, 600),(380, 0, 40, 20),
+        (420, 20, 20, 20),(760, 260, 20, 20),(20, 260, 20, 20),(420, 580, 360, 20),(0, 0, 800, 20),(20, 580, 360, 20),
+        (380, 580, 40, 20),(360, 560, 20, 20),(780, 280, 20, 40),(420, 560, 20, 20),(760, 320, 20, 20),(20, 320, 20, 20),
+        (0, 280, 20, 40),(380, 280, 40, 40),(240, 20, 20, 20),(660, 560, 20, 20),(540, 560, 20, 20),(120, 560, 20, 20),
+        (240, 560, 20, 20),(20, 140, 20, 20),(760, 140, 20, 20),(540, 20, 20, 20),(660, 20, 20, 20),(20, 480, 20, 20),
+        (20, 400, 20, 20),(760, 400, 20, 20),(760, 480, 20, 20),
+    },
         
         #Kinda messed up version
         #(0, 0, 800, 10), (0, 590, 800, 10), (0, 0, 10, 600), (790, 0, 10, 600), (47, 42, 706, 10), (47, 558, 706, 10), 
