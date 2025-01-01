@@ -263,18 +263,20 @@ while running:
     # Move player with collision detection
     wall_rects = [pygame.Rect(wall) for wall in Level.levels[current_level]]
     
-    # Old collision with no sliding
+    # Check wall collision
     new_pos = [player_pos[0] + dx, player_pos[1] + dy]
     new_rect = pygame.Rect(new_pos[0], new_pos[1], player_size, player_size)
-    new_rect_x = pygame.Rect(player_pos[0] + dx, player_pos[1], player_size, player_size)
-    if not any(new_rect_x.colliderect(wall_rect) for wall_rect in wall_rects):
-            player_pos[0] = player_pos[0] + dx
-    new_rect_y = pygame.Rect(player_pos[0], player_pos[1] +dy, player_size, player_size)
-    if not any(new_rect_y.colliderect(wall_rect) for wall_rect in wall_rects):
-            player_pos[1] = player_pos[1] + dy
-    # if not any(new_rect.colliderect(wall_rect) for wall_rect in wall_rects):
-    #     player_pos = new_pos
-    # Handle horizontal movement
+    # Check if collide with wall at
+    if not any(new_rect.colliderect(wall_rect) for wall_rect in wall_rects):
+        player_pos = new_pos
+    else:
+        # Handle horizontal and verticle movement seperate
+        new_rect_x = pygame.Rect(new_pos[0], player_pos[1], player_size, player_size)
+        if not any(new_rect_x.colliderect(wall_rect) for wall_rect in wall_rects):
+                player_pos[0] = new_pos[0]
+        new_rect_y = pygame.Rect(player_pos[0], new_pos[1], player_size, player_size)
+        if not any(new_rect_y.colliderect(wall_rect) for wall_rect in wall_rects):
+                player_pos[1] = new_pos[1]
 
     # Chat GPTs code that maybe broke something
     # print("Player position2: ", player_pos)
