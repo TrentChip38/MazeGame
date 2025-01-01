@@ -271,27 +271,24 @@ while running:
         player_pos = new_pos
     else:
         # Handle horizontal and verticle movement seperate
-        new_rect_x = pygame.Rect(new_pos[0], player_pos[1], player_size, player_size)
-        if not any(new_rect_x.colliderect(wall_rect) for wall_rect in wall_rects):
-                player_pos[0] = new_pos[0]
-        new_rect_y = pygame.Rect(player_pos[0], new_pos[1], player_size, player_size)
-        if not any(new_rect_y.colliderect(wall_rect) for wall_rect in wall_rects):
-                player_pos[1] = new_pos[1]
-
-    # Chat GPTs code that maybe broke something
-    # print("Player position2: ", player_pos)
-    # if dx != 0:
-    #     new_pos_x = [player_pos[0] + dx, player_pos[1]]
-    #     new_rect_x = pygame.Rect(new_pos_x[0], new_pos_x[1], player_size, player_size)
-    #     if not any(new_rect_x.colliderect(wall_rect) for wall_rect in wall_rects):
-    #         player_pos[0] = new_pos_x[0]
-
-    # # Handle vertical movement
-    # if dy != 0:
-    #     new_pos_y = [player_pos[0], player_pos[1] + dy]
-    #     new_rect_y = pygame.Rect(new_pos_y[0], new_pos_y[1], player_size, player_size)
-    #     if not any(new_rect_y.colliderect(wall_rect) for wall_rect in wall_rects):
-    #         player_pos[1] = new_pos_y[1]
+        if dx != 0:
+            for step in range(abs(dx), 0, -1):
+                #Try full movement but if not then decrement it
+                new_dx = dx // abs(dx) * step
+                new_pos_x = player_pos[0] + new_dx
+                new_rect_x = pygame.Rect(new_pos_x, player_pos[1], player_size, player_size)
+                if not any(new_rect_x.colliderect(wall_rect) for wall_rect in wall_rects):
+                    #If you won't hit any walls then move there
+                    player_pos[0] = new_pos_x
+                    break
+        if dy != 0:
+            for step in range(abs(dy), 0, -1):
+                new_dy = dy // abs(dy) * step
+                new_pos_y = player_pos[1] + new_dy
+                new_rect_y = pygame.Rect(player_pos[0], new_pos_y, player_size, player_size)
+                if not any(new_rect_y.colliderect(wall_rect) for wall_rect in wall_rects):
+                    player_pos[1] = new_pos_y
+                    break
 
     # Update explored areas
     update_explored()

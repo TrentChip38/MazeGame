@@ -21,10 +21,10 @@ bigger_goal_size = 40
 default_goal_size = 40
 
 corner_start = [50, 50]
-top_start = [390, 30]
+top_start = [390, 20]
 bottom_start = [390, 560]
 right_start = [760, 290]
-left_start = [30, 290]
+left_start = [20, 290]
 
 # Player starting positions
 start_positions = {0:[390, 290], 1:[390, 560], 2:[20, 280]}
