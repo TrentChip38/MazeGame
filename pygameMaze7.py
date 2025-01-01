@@ -30,7 +30,8 @@ score = 0
 #Power ups
 player_power = []
 extra_lives = ["extralife", "extralife1", "extralife2", "extralife3", "extralife4"]
-
+#Stuff for maps
+is_explored = False
 #powerup settings
 speed_boost1_attained = False
 #Enemy settings
@@ -39,6 +40,7 @@ default_enemy_amount = 4
 
 # Visibility settings
 Darkness_on = True
+# Default
 vis_radius = 2
 vis_y_left = vis_radius - 1
 vis_y_right = vis_radius + 1
@@ -89,6 +91,7 @@ def update_speed():
 def reset_level():
     global player_pos, coins, enemies, timer, explored
     player_pos = start_position
+    print("player position: ", player_pos)
     #Level.start_positions[current_level]
     #print(Level.start_positions[current_level])
     #print(start_position)
@@ -150,9 +153,9 @@ def draw_game():
         pygame.draw.rect(screen, C.WALL_BLACK, wall)
 
     # Draw goal
-        for goal_name, goal in Level.level_goals[current_level].items():
-            goal_rect = pygame.Rect(goal["pos"][0], goal["pos"][1], goal["size"], goal["size"])
-            pygame.draw.rect(screen, goal["color"], goal_rect)
+    for goal_name, goal in Level.level_goals[current_level].items():
+        goal_rect = pygame.Rect(goal["pos"][0], goal["pos"][1], goal["size"], goal["size"])
+        pygame.draw.rect(screen, goal["color"], goal_rect)
 
     # Draw coins
     for coin in coins:
@@ -163,7 +166,7 @@ def draw_game():
         pygame.draw.rect(screen, C.RED, (enemy[0], enemy[1], enemy_size, enemy_size))
     
     # Draw unexplored areas in black
-    if current_level == 0 or Darkness_on == False:
+    if current_level == 0 or Darkness_on == False or is_explored:
         #don't draw
         pass
     else:
@@ -234,7 +237,7 @@ while running:
             dy += player_speed
     #Power up toggling
     if "speedboost10" in player_power:
-        if keys[pygame.K_m] or keys[pygame.K_SPACE]:
+        if keys[pygame.K_m] or keys[pygame.K_e]:
             if speed_boost_toggle:
                 speed_boost_toggle = 0
                 player_speed = default_player_speed
@@ -245,23 +248,48 @@ while running:
     if "speedboost1" in player_power and speed_boost1_attained == False:
         player_speed += 1
         speed_boost1_attained = True
+    # Default to 2
     vis_radius = 2
     #vision
     if "vision4" in player_power:
         vis_radius += 2
     if "vision6" in player_power:
         vis_radius += 2
-    vis_y_left = vis_radius - 1
+    vis_y_left = vis_radius # -1
     vis_y_right = vis_radius + 1
     vis_x_left = vis_y_left
     vis_x_right = vis_y_right
 
     # Move player with collision detection
+    wall_rects = [pygame.Rect(wall) for wall in Level.levels[current_level]]
+    
+    # Old collision with no sliding
     new_pos = [player_pos[0] + dx, player_pos[1] + dy]
     new_rect = pygame.Rect(new_pos[0], new_pos[1], player_size, player_size)
-    wall_rects = [pygame.Rect(wall) for wall in Level.levels[current_level]]
-    if not any(new_rect.colliderect(wall_rect) for wall_rect in wall_rects):
-        player_pos = new_pos
+    new_rect_x = pygame.Rect(player_pos[0] + dx, player_pos[1], player_size, player_size)
+    if not any(new_rect_x.colliderect(wall_rect) for wall_rect in wall_rects):
+            player_pos[0] = player_pos[0] + dx
+    new_rect_y = pygame.Rect(player_pos[0], player_pos[1] +dy, player_size, player_size)
+    if not any(new_rect_y.colliderect(wall_rect) for wall_rect in wall_rects):
+            player_pos[1] = player_pos[1] + dy
+    # if not any(new_rect.colliderect(wall_rect) for wall_rect in wall_rects):
+    #     player_pos = new_pos
+    # Handle horizontal movement
+
+    # Chat GPTs code that maybe broke something
+    # print("Player position2: ", player_pos)
+    # if dx != 0:
+    #     new_pos_x = [player_pos[0] + dx, player_pos[1]]
+    #     new_rect_x = pygame.Rect(new_pos_x[0], new_pos_x[1], player_size, player_size)
+    #     if not any(new_rect_x.colliderect(wall_rect) for wall_rect in wall_rects):
+    #         player_pos[0] = new_pos_x[0]
+
+    # # Handle vertical movement
+    # if dy != 0:
+    #     new_pos_y = [player_pos[0], player_pos[1] + dy]
+    #     new_rect_y = pygame.Rect(new_pos_y[0], new_pos_y[1], player_size, player_size)
+    #     if not any(new_rect_y.colliderect(wall_rect) for wall_rect in wall_rects):
+    #         player_pos[1] = new_pos_y[1]
 
     # Update explored areas
     update_explored()
@@ -272,7 +300,8 @@ while running:
         goal_rect = pygame.Rect(goal["pos"][0], goal["pos"][1], goal["size"], goal["size"])
 
         if new_rect.colliderect(goal_rect):
-            #print(f"Player reached {goal_name}! Moving to level {goal['sendtolevel']}.")
+            if "sendtolevel" in goal:
+                print(f"Player reached {goal_name}! Moving to level {goal['sendtolevel']}.")
             #score += 100
             #Add power or attribute to player
             if "addpower" in goal:
@@ -291,17 +320,7 @@ while running:
                     current_level = 55 #the ghost level
                 start_position = goal["sendtopos"]
                 reset_level()
-
-    # Check for reaching the goal in the bottom right (OLD)
-    # goal_rect = pygame.Rect(WIDTH - 50, HEIGHT - 50, goal_size, goal_size)
-    # if new_rect.colliderect(goal_rect):
-    #     score += 100
-    #     current_level += 1
-    #     if current_level >= len(Level.levels):
-    #         print("You win!")
-    #         running = False
-    #     else:
-    #         reset_level()
+                print("player pos after goal: ", player_pos)
 
     # Check for coin collection
     for coin in coins[:]:
