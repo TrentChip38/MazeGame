@@ -292,7 +292,7 @@ def draw_game():
         pygame.draw.rect(screen, C.RED, (enemy[0], enemy[1], enemy_size, enemy_size))
     
     # Draw unexplored areas in black
-    if current_level == 0 or Darkness_on == False or current_level in levels_explored:
+    if current_level == 0 or Darkness_on == False or (current_level in game_data["levels_explored"]):
         #don't draw
         pass
     else:
@@ -459,7 +459,10 @@ while running:
                         game_data["player_power"].append(goal["addpower"])
             #Move if send to pos defined in goal
             if "sendtolevel" in goal:
-                
+                #Right before you get sent somewhere check if this level fully explored
+                if all(all(row) for row in explored) and not current_level in game_data["levels_explored"]:
+                    #If fully explored add map to player
+                    game_data["levels_explored"].append(current_level)
                 if goal["sendtolevel"] in Level.levels:
                     current_level = goal["sendtolevel"]
                     game_data["current_level"] = current_level
@@ -547,6 +550,10 @@ while running:
             if not any(item in game_data["player_power"] for item in extra_lives):
                 #running = False
                 print("Enemy collision. Reset")
+                #Add map if room fully explored
+                if all(all(row) for row in explored) and not current_level in game_data["levels_explored"]:
+                    #If fully explored add map to player
+                    game_data["levels_explored"].append(current_level)
                 game_data["score"] -= 50
                 current_level = 0
                 game_data["current_level"] = current_level
@@ -565,9 +572,6 @@ while running:
                         if len(enemies) == 0:
                             game_data["score"] += 100
                         break
-
-
-
 
     # Draw game
     draw_game()

@@ -1,6 +1,6 @@
 {
     "Player1": {
-        "score": 7000,
+        "score": 6580,
         "player_power": [
             "speedboost1",
             "vision4",
@@ -11,23 +11,80 @@
             0,
             0,
             4,
-            4
+            4,
+            55,
+            1,
+            2,
+            12,
+            22,
+            223,
+            51,
+            14,
+            56,
+            3,
+            34,
+            21
         ],
         "current_level": 0
     },
     "Player2": {
-        "score": 0,
-        "player_power": [],
-        "levels_explored": [
-            0
+        "score": -50,
+        "player_power": [
+            "speedboost1",
+            "speedboost10",
+            "vision4",
+            "vision6"
         ],
-        "current_level": 0
+        "levels_explored": [
+            0,
+            12,
+            1,
+            4,
+            55,
+            2,
+            14,
+            141,
+            1414,
+            3,
+            22,
+            222,
+            33,
+            34,
+            60,
+            32
+        ],
+        "current_level": 55
     },
     "Player3": {
-        "score": 130,
-        "player_power": [],
+        "score": 410,
+        "player_power": [
+            "speedboost1",
+            "vision4",
+            "speedboost10",
+            "vision6",
+            "extralife"
+        ],
         "levels_explored": [
-            0
+            0,
+            1,
+            2,
+            3,
+            32,
+            55,
+            4,
+            14,
+            141,
+            34,
+            60,
+            33,
+            22,
+            222,
+            21,
+            12,
+            56,
+            223,
+            51,
+            221
         ],
         "current_level": 0
     }
