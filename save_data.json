@@ -1,0 +1,34 @@
+{
+    "Player1": {
+        "score": 7000,
+        "player_power": [
+            "speedboost1",
+            "vision4",
+            "vision6",
+            "speedboost10"
+        ],
+        "levels_explored": [
+            0,
+            0,
+            4,
+            4
+        ],
+        "current_level": 0
+    },
+    "Player2": {
+        "score": 0,
+        "player_power": [],
+        "levels_explored": [
+            0
+        ],
+        "current_level": 0
+    },
+    "Player3": {
+        "score": 130,
+        "player_power": [],
+        "levels_explored": [
+            0
+        ],
+        "current_level": 0
+    }
+}
