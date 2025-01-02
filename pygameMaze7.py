@@ -4,9 +4,15 @@ import random
 import math
 import Colors as C
 import Level
+import GameData
+
 
 # Initialize Pygame
 pygame.init()
+
+# Fonts
+font = pygame.font.Font(None, 74)  # Title font
+small_font = pygame.font.Font(None, 36)  # Instruction font
 
 WIDTH = Level.WIDTH
 HEIGHT = Level.HEIGHT
@@ -82,6 +88,11 @@ if dev_mode_cheats:
 # Tracking explored positions (2D array)
 explored = [[False for _ in range(WIDTH // 40)] for _ in range(HEIGHT // 40)]
 
+game_data = {
+    "score": score,  # Fetch score from pygameMaze7
+    "player_power": player_power,  # Fetch player powers from pygameMaze7
+    #"save_testing": 5  # Default test value
+}
 def update_speed():
     pass
 
@@ -140,6 +151,36 @@ def reset_level():
     timer = 60  # Reset timer
 
 # Function to draw everything
+# Starting screen function
+def starting_screen():
+    button_rect = pygame.Rect(WIDTH // 2 - 100, HEIGHT // 2 + 100, 200, 50)
+    while True:
+        screen.fill(C.WHITE)  # Clear screen with white
+
+        # Draw title
+        title_text = font.render("Welcome to the Maze Game!", True, C.BLACK)
+        screen.blit(title_text, (WIDTH // 2 - title_text.get_width() // 2, HEIGHT // 3))
+
+        # Draw instructions
+        # text saying press space to begin game: instructions_text = small_font.render("Press SPACE to start", True, C.BLUE)
+        #screen.blit(instructions_text, (WIDTH // 2 - instructions_text.get_width() // 2, HEIGHT // 2))
+
+        #code for button
+        pygame.draw.rect(screen, C.BLUE, button_rect)
+        button_text = small_font.render("Start Game", True, C.WHITE)
+        screen.blit(button_text, (button_rect.x + button_rect.width // 2 - button_text.get_width() // 2,
+                                  button_rect.y + button_rect.height // 2 - button_text.get_height() // 2))
+        # Event handling
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if button_rect.collidepoint(event.pos):  # Check if button is clicked
+                    return
+        # Update display
+        pygame.display.flip()
+
 def draw_game():
     # Clear screen with gray background
     if current_level in Level.levels_color:
@@ -204,7 +245,9 @@ reset_level()
 
 # Main game loop------------------------------
 running = True
+starting_screen()
 while running:
+
     # Event handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -235,6 +278,24 @@ while running:
           dy += player_speed
     elif keys[pygame.K_s]:
             dy += player_speed
+
+    # Saving game data
+    if keys[pygame.K_p]:
+       # players_number_change = input("Give number to save (not 5): ")
+       # game_data['save_testing'] = players_number_change
+       # print(game_data['save_testing'], "this number should be saved:")
+
+        game_data["score"] = score
+        game_data["player_power"] = player_power
+        # Save updated data
+        GameData.save_game(game_data)
+
+    # Loading game data
+    if keys[pygame.K_l]:
+        loaded_data = GameData.load_game()
+        print(loaded_data)  # Print the loaded data to verify
+
+
     #Power up toggling
     if "speedboost10" in player_power:
         if keys[pygame.K_m] or keys[pygame.K_e]:
@@ -413,8 +474,8 @@ while running:
                             enemies.remove(enemy)
                         print("Enemy collision. Reset")
                         break
-            
-                
+
+
 
 
     # Draw game
