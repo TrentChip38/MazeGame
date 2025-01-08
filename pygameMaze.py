@@ -29,6 +29,11 @@ player_size = 20
 default_player_speed = 5
 player_speed = default_player_speed
 
+#Player sprites
+# player_sprite = pygame.image.load("Images/CapeDude.png").convert_alpha()
+# player_sprite.set_colorkey((255, 255, 255))
+# player_sprite = pygame.transform.scale(player_sprite, (player_size, player_size))
+
 speed_boost_toggle = 0
 dev_cost_divider = 1
 # Timer and Score
@@ -119,8 +124,8 @@ def save_player_data(player_id, player_data, file_path="save_data.json"):
             data = {}  # Initialize with an empty dictionary if the file doesn't exist
 
         # Update the data for the specified player
-        print(game_data)
-        print("Player Data: ", player_data)
+        #print(game_data)
+        #print("Player Data: ", player_data)
         data[player_id] = player_data
         
         # Write the updated data back to the JSON file
@@ -304,6 +309,7 @@ def draw_game():
     # Draw player
     player_rect = pygame.Rect(player_pos[0], player_pos[1], player_size, player_size)
     pygame.draw.rect(screen, C.BLUE, player_rect)
+    #screen.blit(player_sprite, player_pos)
 
     # Draw timer and score
     font = pygame.font.SysFont(None, 36)
