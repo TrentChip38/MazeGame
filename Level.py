@@ -157,6 +157,23 @@ level_goals = {
         #"goalS": {"pos": mid_bottom_goal, "sendtolevel": 0, "sendtopos": top_start, "color": C.GREY, "size": bigger_goal_size},
         #"goalW": {"pos": mid_left_goal, "sendtolevel": 14, "sendtopos": right_start, "color": C.GREY, "size": bigger_goal_size},
     },
+    41: {
+        "goalN": {"pos": mid_top_goal, "sendtolevel": 14, "sendtopos": bottom_start, "color": C.GREY, "size": default_goal_size},
+        "goalE": {"pos": mid_right_goal, "sendtolevel": 412, "sendtopos": left_start, "color": C.GREY, "size": default_goal_size},
+        "goalS": {"pos": mid_bottom_goal, "sendtolevel": 4, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
+        "goalW": {"pos": mid_left_goal, "sendtolevel": 414, "sendtopos": right_start, "color": C.GREY, "size": default_goal_size},
+        "goalP": {"pos": [380, 290], "addpower": "extralife", "color": C.YELLOW, "size": 30},
+    },
+    412:{
+        # "goalN": {"pos": mid_top_goal, "sendtolevel": 14, "sendtopos": bottom_start, "color": C.GREY, "size": default_goal_size},
+        "goalE": {"pos": mid_right_goal, "sendtolevel": 0, "sendtopos": left_start, "color": C.GREEN, "size": default_goal_size},
+        # "goalS": {"pos": mid_bottom_goal, "sendtolevel": 4, "sendtopos": top_start, "color": C.GREY, "size": default_goal_size},
+        # "goalW": {"pos": mid_left_goal, "sendtolevel": 414, "sendtopos": right_start, "color": C.GREY, "size": default_goal_size},
+        "goalP": {"pos": [380, 290], "addpower": "vision6", "color": C.BROWN_DARK, "size": 20},
+    },
+    414:{
+        "goalE": {"pos": mid_right_goal, "sendtolevel": 41, "sendtopos": left_start, "color": C.GREEN, "size": default_goal_size},
+    },
     51: {#Just a specific iteration of 55
         "goalN": {"pos": mid_top_goal, "sendtolevel": 222, "sendtopos": bottom_start, "color": C.GREY, "size": default_goal_size},
         "goalE": {"pos": mid_right_goal, "sendtolevel": 0, "sendtopos": left_start, "color": C.GREEN, "size": default_goal_size},
@@ -353,6 +370,25 @@ levels = {
         (240, 220, 0, 0),(260, 220, 120, 20),(380, 220, 0, 0),(380, 220, 40, 20),(420, 240, 0, 0),(400, 240, 20, 60),
         (420, 280, 100, 20),(460, 180, 0, 60),(480, 180, 0, 40),(460, 160, 20, 80),(480, 220, 120, 20),(520, 280, 120, 20),
         (640, 220, 20, 40),(580, 160, 20, 60),(660, 220, 120, 20),
+    },
+    41:{
+        (0, 0, 20, 280),(420, 0, 380, 20),(420, 580, 380, 20),(780, 320, 20, 280),(780, 0, 20, 280),(0, 580, 380, 20),
+        (0, 0, 380, 20),(0, 320, 20, 280),(180, 80, 220, 20),(700, 80, 20, 400),(120, 120, 20, 400),(160, 20, 20, 20),
+        (260, 560, 20, 20),(200, 160, 160, 20),(280, 220, 20, 200),(360, 160, 20, 200),(280, 420, 260, 20),(380, 340, 100, 20),
+        (520, 160, 20, 260),(360, 140, 180, 20),(440, 200, 20, 140),(540, 140, 120, 20),(580, 200, 120, 20),(540, 260, 120, 20),
+        (580, 320, 120, 20),(540, 380, 120, 20),(580, 440, 120, 20),(520, 440, 20, 80),(540, 500, 140, 20),(280, 440, 20, 80),
+        (300, 500, 180, 20),(340, 460, 80, 20),(140, 220, 100, 20),(180, 280, 100, 20),(140, 340, 100, 20),(180, 400, 100, 20),
+        (140, 460, 100, 20),(20, 220, 20, 20),(60, 60, 0, 0),(60, 60, 20, 120),(60, 280, 20, 40),(60, 360, 20, 180),
+        (640, 20, 20, 20),(440, 80, 200, 20),
+    },
+    412:{
+        (780, 0, 20, 280),(0, 580, 380, 20),(0, 0, 20, 280),(420, 0, 380, 20),(420, 580, 380, 20),(780, 320, 20, 280),
+        (0, 320, 20, 260),(20, 0, 360, 20),(380, 0, 40, 20),(380, 580, 40, 20),(60, 540, 700, 20),(740, 40, 20, 500),
+        (60, 40, 680, 20),(40, 40, 20, 180),(40, 240, 20, 320),
+    },
+    414:{
+        (780, 0, 20, 280),(0, 580, 380, 20),(0, 0, 20, 280),(420, 0, 380, 20),(420, 580, 380, 20),(780, 320, 20, 280),
+        (0, 320, 20, 260),(20, 0, 360, 20),
     },
   5:{
        (780, 0, 20, 600),(0, 0, 20, 600),(0, 0, 800, 20),(0, 580, 800, 20),(80, 80, 20, 420),(80, 480, 260, 20),

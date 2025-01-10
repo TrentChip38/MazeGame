@@ -1,12 +1,11 @@
 {
     "Player1": {
-        "score": 6920,
+        "score": 7150,
         "player_power": [
             "speedboost1",
             "vision4",
             "vision6",
-            "speedboost10",
-            "extralife2"
+            "speedboost10"
         ],
         "levels_explored": [
             0,
@@ -24,7 +23,8 @@
             56,
             3,
             34,
-            21
+            21,
+            41
         ],
         "current_level": 0
     },
