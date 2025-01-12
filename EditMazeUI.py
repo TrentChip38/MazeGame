@@ -19,6 +19,7 @@ BLUE = (0, 0, 255)
 RED = (255, 0, 0)
 
 # Grid size, use 10 for finer control
+#Default to 20
 GRID_SIZE = 20
 
 # # Outer walls
@@ -260,6 +261,10 @@ while running:
 
         # Save the maze layout
         elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_g:
+                GRID_SIZE = 10
+            if event.key == pygame.K_h:
+                GRID_SIZE = 20
             if event.key == pygame.K_s:
                 #save_maze_file()
                 add_to_dict("Level.py", "levels = {", level_num)
